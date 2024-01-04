@@ -14,19 +14,19 @@
                 <th>Páratartalom</th>
                 <th>Mérés ideje</th>
             </tr>
-            @foreach ($homersekletek as $hom)
+            @foreach ($fusterzekelo1 as $fust1)
             <tr>
-                <td>{{$hom->h_id}}</td>
-                <td>{{$leg->legminoseg}}</td>
-                <td>{{$hom->hofok}} &deg;C</td>
-                <td>{{$hom->paratartalom}}%</td>
-                <td>{{$hom->meres_ideje}}</td>
+                <td>{{$fust1->f1_id}}</td>
+                <td>{{$fust1->f1_legminoseg}}</td>
+                <td>{{$fust1->f1_hofok}} &deg;C</td>
+                <td>{{$fust1->f1_paratartalom}}%</td>
+                <td>{{$fust1->f1_meres_ideje}}</td>
             </tr>
             @endforeach
 
         </table>
 
-        {{$homersekletek->links() }}
+        {{$fusterzekelo1->links() }}
     </div>
 </div>
 
