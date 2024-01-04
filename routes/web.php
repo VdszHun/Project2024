@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Fusterzeklo1Controller;
-use App\Http\Controllers\Fusterzeklo2Controller;
+use App\Http\Controllers\Fusterzekelo1Controller;
+use App\Http\Controllers\Fusterzekelo2Controller;
 
 
 Route::get('/', function () {
