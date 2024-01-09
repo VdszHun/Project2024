@@ -12,13 +12,14 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
     
 </head>
-<body style="background-color: #FEF3E2">
+<body class="eotvos_bg">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-2 vh-100" style="background-color: #112338">
-                <div  class="d-flex flex-column flex-shrink-0 p-3 text-dark" style="background-color: #112338">
+            <div class="col-2 vh-100 eotvos_leftmenu" >
+                <div  class="d-flex flex-column flex-shrink-0 p-3 text-dark eotvos_leftmenu">
                     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
 
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" fill="currentColor" class="bi bi-cpu me-3" viewBox="0 0 16 16">
