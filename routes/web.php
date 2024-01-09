@@ -9,5 +9,5 @@ Route::get('/', function () {
     return view('welcome');
 })->name("fooldal");
 
-Route::get('/fusterzekelo1',[Fusterzeklo1Controller::class,'index'])->name('fusterzekelo1');
-Route::get('/fusterzekelo2',[Fusterzeklo2Controller::class,'index'])->name('fusterzekelo2');
+Route::get('/fusterzekelo1',[Fusterzekelo1Controller::class,'index'])->name('fusterzekelo1');
+Route::get('/fusterzekelo2',[Fusterzekelo2Controller::class,'index'])->name('fusterzekelo2');

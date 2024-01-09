@@ -26,7 +26,7 @@
 
         </table>
 
-        {{$fusterzekelo1->links() }}
+        {{$fusterzekelo1->links()}}
     </div>
 </div>
 
