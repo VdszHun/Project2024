@@ -28,7 +28,7 @@ void setup()
   if(WiFi.config(local_IP,gateway,subnet,dns1,dns2)){
     Serial.println("Statikus IP konfigurálva");
   }else{
-    Serial.println("Statikus IP sikertelen!");
+    Serial.println("Statikus IP konfigurálása sikertelen!");
   }
 
   WiFi.begin(ssid,password);
@@ -50,7 +50,7 @@ void loop()
   float homersekletFahrenheit= dht.readTemperature(true);
 
   if (isnan(paratartalom) || isnan(homersekletCelsius) || isnan(homersekletFahrenheit)){
-    Serial.println("Sikertelen olvasás, ellenőrizd a kábeleket");
+    Serial.println("Sikertelen olvasás, ellenőrizd a kábeleket!");
   }else{
     Serial.print("Páratartalom: ");
     Serial.print(paratartalom);
@@ -58,9 +58,9 @@ void loop()
     Serial.print("  ||  ");
     Serial.print("Hőmérséklet: ");
     Serial.print(homersekletCelsius);
-    Serial.print("C  ");
+    Serial.print(" °C");
     Serial.print(homersekletFahrenheit);
-    Serial.println("F");  
+    Serial.println(" °F");  
     homersekletKuldes(paratartalom, homersekletCelsius);
     }
   
