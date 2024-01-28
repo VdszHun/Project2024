@@ -1,3 +1,24 @@
+/*
+Szükséges board, 2024. 01. 28-tól  viszonyítva:
+
+Boardnév: esp8266
+Verzió: 3.1.2
+Boardlink, csatold az Arduino IDE 2.2.1 Preferences-en belül az additional boards Manager URLs-be:
+http://arduino.esp8266.com/stable/package_esp8266com_index.json
+
+A link csatolása és elfogadása után letölthetővé válik a board a Boards Managerben.
+
+Szükséges könyvtárak, 2024. 01. 28-tól viszonyítva:
+
+Könyvtárnév: Adafruit Unified Sensor
+Verzió: 1.1.14
+
+Könyvtárnév: DHT sensor library
+Verzió: 1.4.6
+
+-Vadász Dávid
+*/
+
 #include "DHT.h"
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
@@ -101,3 +122,4 @@ void homersekletKuldes(float hofok, float para){
   Serial.print("RESPONSE: ");
   Serial.println(content);
 }
+
