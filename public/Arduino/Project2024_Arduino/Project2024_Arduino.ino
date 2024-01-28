@@ -17,11 +17,13 @@ HTTPClient httpClient;
 WiFiClient client;
 
 const int AOUTpin = A0;
-
+const int LEDpin = 3;
 int levegominosegErtek;
+
 
 void setup()
 {
+  pinMode(LEDpin, OUTPUT);
   Serial.begin(9600);
   dht.begin();
 
@@ -61,13 +63,19 @@ void loop()
     Serial.print(" °C");
     Serial.print(homersekletFahrenheit);
     Serial.println(" °F");  
-    homersekletKuldes(paratartalom, homersekletCelsius);
     }
   
   levegominosegErtek = analogRead(0);
   Serial.println(levegominosegErtek, DEC);
+
+  homersekletKuldes(paratartalom, homersekletCelsius);
   legminosegKuldes(levegominosegErtek);
-  delay(10000);
+
+  digitalWrite(LEDpin, HIGH);
+
+  delay(10000); 
+
+  digitalWrite(LEDpin, LOW);
 }
 
 void legminosegKuldes(int legminoseg){
