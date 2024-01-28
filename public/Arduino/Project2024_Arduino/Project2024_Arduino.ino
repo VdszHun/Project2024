@@ -122,4 +122,3 @@ void homersekletKuldes(float hofok, float para){
   Serial.print("RESPONSE: ");
   Serial.println(content);
 }
-
