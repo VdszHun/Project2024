@@ -38,20 +38,37 @@ HTTPClient httpClient;
 WiFiClient client;
 
 const int AOUTpin = A0;
-const int LEDpin = 3;
-int levegominosegErtek;
+const int AdatLEDpin = D1;
+const int AllapotLEDpin = D2;
+int levegominosegPpm;
 
 
 void setup()
 {
-  pinMode(LEDpin, OUTPUT);
+  pinMode(AdatLEDpin, OUTPUT);
+  pinMode(AllapotLEDpin, OUTPUT);
+  pinMode(AOUTpin, INPUT);
+
   Serial.begin(9600);
   dht.begin();
 
   if(WiFi.config(local_IP,gateway,subnet,dns1,dns2)){
     Serial.println("Statikus IP konfigurálva");
+
+    //Állapot sikeres jelzés
+    digitalWrite(AllapotLEDpin, HIGH);
+    delay(500); 
+    digitalWrite(AllapotLEDpin, LOW);
   }else{
     Serial.println("Statikus IP konfigurálása sikertelen!");
+    //Állapot sikertelen jelzés
+    digitalWrite(AllapotLEDpin, HIGH);
+    delay(500); 
+    digitalWrite(AllapotLEDpin, LOW);
+    delay(500);
+    digitalWrite(AllapotLEDpin, HIGH);
+    delay(500); 
+    digitalWrite(AllapotLEDpin, LOW);
   }
 
   WiFi.begin(ssid,password);
@@ -62,18 +79,30 @@ void setup()
   }
 
   Serial.println("");
-  Serial.println("WiFi kapcsolódás sikeres!");
+  Serial.println("WiFi kapcsolódás sikeres!");  
   Serial.println(WiFi.localIP());
+  //Állapot sikeres jelzés
+  digitalWrite(AllapotLEDpin, HIGH);
+  delay(500); 
+  digitalWrite(AllapotLEDpin, LOW);
  }
 
 void loop()
 {
   float paratartalom= dht.readHumidity();
   float homersekletCelsius= dht.readTemperature();
-  float homersekletFahrenheit= dht.readTemperature(true);
+  levegominosegPpm = analogRead(0);
 
-  if (isnan(paratartalom) || isnan(homersekletCelsius) || isnan(homersekletFahrenheit)){
-    Serial.println("Sikertelen olvasás, ellenőrizd a kábeleket!");
+  if (isnan(paratartalom) || isnan(homersekletCelsius)){
+    Serial.println("Sikertelen páratartalom és hőmérskéklet beolvasás, ellenőrizd a kábeleket!");
+    //Állapot sikertelen jelzés
+    digitalWrite(AllapotLEDpin, HIGH);
+    delay(500); 
+    digitalWrite(AllapotLEDpin, LOW);
+    delay(500);
+    digitalWrite(AllapotLEDpin, HIGH);
+    delay(500); 
+    digitalWrite(AllapotLEDpin, LOW);
   }else{
     Serial.print("Páratartalom: ");
     Serial.print(paratartalom);
@@ -82,43 +111,57 @@ void loop()
     Serial.print("Hőmérséklet: ");
     Serial.print(homersekletCelsius);
     Serial.print(" °C");
-    Serial.print(homersekletFahrenheit);
-    Serial.println(" °F");  
-    }
-  
-  levegominosegErtek = analogRead(0);
-  Serial.println(levegominosegErtek, DEC);
+    } 
 
+  if (levegominosegPpm <= 10){
+    Serial.println("Sikertelen levegőminőség beolvasás, ellenőrizd a kábeleket!");
+    digitalWrite(AllapotLEDpin, HIGH);
+    delay(500); 
+    digitalWrite(AllapotLEDpin, LOW);
+    delay(500);
+    digitalWrite(AllapotLEDpin, HIGH);
+    delay(500); 
+    digitalWrite(AllapotLEDpin, LOW);
+  }else{
+    Serial.print("Levegőminőség: ");
+    Serial.print(levegominosegPpm, DEC);
+    Serial.println(" ppm");
+  }
+
+  //Adatküldés és annak a LED jelzése
   homersekletKuldes(paratartalom, homersekletCelsius);
-  legminosegKuldes(levegominosegErtek);
+  legminosegKuldes(levegominosegPpm);
 
-  digitalWrite(LEDpin, HIGH);
+  digitalWrite(AdatLEDpin, HIGH);
 
   delay(10000); 
 
-  digitalWrite(LEDpin, LOW);
+  digitalWrite(AdatLEDpin, LOW);
 }
 
-void legminosegKuldes(int legminoseg){
-  const char *URL = "http://192.168.21.74/Project2024/public/api/legminoseg/beszuras";
-  String data = "legminoseg="+String(legminoseg);
+void homersekletKuldes(int paratartalom, int homerseklet){
+  const char *URL = "http://192.168.21.74/Project2024/public/api/fusterzekelo/beszuras";
+  String data = "paratartalom="+String(paratartalom)+"&homerseklet="+String(homerseklet);
   httpClient.begin(client,URL);
   httpClient.addHeader("Content-Type","application/x-www-form-urlencoded");
   httpClient.POST(data);
   String content = httpClient.getString();
   httpClient.end();
-  Serial.print("RESPONSE: ");
+  Serial.println(" ");
+  Serial.print("Páratartalom és hőmérséklet RESPONSE: ");
   Serial.println(content);
 }
 
-void homersekletKuldes(float hofok, float para){
-  const char *URL = "http://192.168.21.74/Project2024/public/api/homerseklet/beszuras";
-  String data = "homerseklet="+String(hofok)+"&paratartalom="+String(para);
+void legminosegKuldes(int ppm){
+  const char *URL = "http://192.168.21.74/Project2024/public/api/fusterzekelo/beszuras";
+  String data = "ppm="+String(ppm);
   httpClient.begin(client,URL);
   httpClient.addHeader("Content-Type","application/x-www-form-urlencoded");
   httpClient.POST(data);
   String content = httpClient.getString();
   httpClient.end();
-  Serial.print("RESPONSE: ");
+  Serial.println(" ");
+  Serial.print("Levegőminőség RESPONSE: ");
   Serial.println(content);
+  Serial.println(" ");
 }
