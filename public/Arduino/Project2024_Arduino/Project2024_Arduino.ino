@@ -25,21 +25,25 @@ Verzió: 1.4.6
 
 #define DHTPIN 5
 #define DHTTYPE DHT11
-#define ssid "Cisco3"
+#define ssid "Cisco4"
 #define password "Eotvos2023"
 
 DHT dht(DHTPIN,DHTTYPE);
-IPAddress subnet(255,255,0,0);
+/*IPAddress subnet(255,255,0,0);
 IPAddress gateway(192,168,1,95);
 IPAddress local_IP(192,168,12,2);
 IPAddress dns1(8,8,8,8);
 IPAddress dns2(192,168,100,150);
+*/
 HTTPClient httpClient;
 WiFiClient client;
 
 const int AOUTpin = A0;
 const int AdatLEDpin = D1;
 const int AllapotLEDpin = D2;
+const int levegominosegAdatpin = D3;
+const int on_offButtonpin = D4;
+int buttonStatus = 0;
 int levegominosegPpm;
 
 
@@ -48,11 +52,13 @@ void setup()
   pinMode(AdatLEDpin, OUTPUT);
   pinMode(AllapotLEDpin, OUTPUT);
   pinMode(AOUTpin, INPUT);
+  pinMode(levegominosegAdatpin, INPUT);
+  pinMode(on_offButtonpin, INPUT);
 
   Serial.begin(9600);
   dht.begin();
 
-  if(WiFi.config(local_IP,gateway,subnet,dns1,dns2)){
+  /*if(WiFi.config(local_IP,gateway,subnet,dns1,dns2)){
     Serial.println("Statikus IP konfigurálva");
 
     //Állapot sikeres jelzés
@@ -69,22 +75,32 @@ void setup()
     digitalWrite(AllapotLEDpin, HIGH);
     delay(500); 
     digitalWrite(AllapotLEDpin, LOW);
-  }
+  }*/
 
+  WiFi.disconnect();
   WiFi.begin(ssid,password);
+
+
+  int countTime = 0;
   Serial.print("Csatlakozás...");
-  while(WiFi.status() != WL_CONNECTED){
+  while(WiFi.status() != WL_CONNECTED && countTime > 20){
+    countTime++;
     Serial.print(".");
     delay(500);
   }
+  if(WiFi.isConnected() == false ){
+    Serial.println("Sikertelen kapcsolódás");
+  } else {
+    Serial.println("");
+    Serial.println("WiFi kapcsolódás sikeres!");  
+    Serial.println(WiFi.localIP());
+    //Állapot sikeres jelzés
+    digitalWrite(AllapotLEDpin, HIGH);
+    delay(500); 
+    digitalWrite(AllapotLEDpin, LOW);
+  }
 
-  Serial.println("");
-  Serial.println("WiFi kapcsolódás sikeres!");  
-  Serial.println(WiFi.localIP());
-  //Állapot sikeres jelzés
-  digitalWrite(AllapotLEDpin, HIGH);
-  delay(500); 
-  digitalWrite(AllapotLEDpin, LOW);
+  
  }
 
 void loop()
