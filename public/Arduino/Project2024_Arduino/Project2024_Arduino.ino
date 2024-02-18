@@ -3,7 +3,7 @@ Szükséges board, 2024. 01. 28-tól  viszonyítva:
 
 Boardnév: esp8266
 Verzió: 3.1.2
-Boardlink, csatold az Arduino IDE 2.2.1 Preferences-en belül az additional boards Manager URLs-be:
+Boardlink, csatold az Arduino IDE 2.3.1 Preferences-en belül az additional boards Manager URLs-be:
 http://arduino.esp8266.com/stable/package_esp8266com_index.json
 
 A link csatolása és elfogadása után letölthetővé válik a board a Boards Managerben.
