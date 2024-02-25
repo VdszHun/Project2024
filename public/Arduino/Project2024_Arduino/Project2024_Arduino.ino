@@ -3,12 +3,12 @@ Szükséges board, 2024. 01. 28-tól  viszonyítva:
 
 Boardnév: esp8266
 Verzió: 3.1.2
-Boardlink, csatold az Arduino IDE 2.3.1 Preferences-en belül az additional boards Manager URLs-be:
+Boardlink, csatold az Arduino IDE 2.3.2 Preferences-en belül az additional boards Manager URLs-be:
 http://arduino.esp8266.com/stable/package_esp8266com_index.json
 
 A link csatolása és elfogadása után letölthetővé válik a board a Boards Managerben.
 
-Szükséges könyvtárak, 2024. 01. 28-tól viszonyítva:
+Szükséges könyvtárak, 2024. 02. 25-től viszonyítva:
 
 Könyvtárnév: Adafruit Unified Sensor
 Verzió: 1.1.14
@@ -23,7 +23,7 @@ Verzió: 1.4.6
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 
-#define DHTPIN 5
+#define DHTPIN D5
 #define DHTTYPE DHT11
 #define ssid "Cisco4"
 #define password "Eotvos2023"
@@ -42,10 +42,12 @@ const int AOUTpin = A0;
 const int AdatLEDpin = D1;
 const int AllapotLEDpin = D2;
 const int levegominosegAdatpin = D3;
-const int on_offButtonpin = D4;
-int buttonStatus = 0;
+const int resetButtonpin = D4;
+float paratartalom;
+float homersekletCelsius;
 int levegominosegPpm;
 
+//#################################################################################################################################################################################################################################
 
 void setup()
 {
@@ -53,7 +55,7 @@ void setup()
   pinMode(AllapotLEDpin, OUTPUT);
   pinMode(AOUTpin, INPUT);
   pinMode(levegominosegAdatpin, INPUT);
-  pinMode(on_offButtonpin, INPUT);
+  pinMode(resetButtonpin, INPUT);
 
   Serial.begin(9600);
   dht.begin();
@@ -89,7 +91,7 @@ void setup()
     delay(500);
   }
   if(WiFi.isConnected() == false ){
-    Serial.println("Sikertelen kapcsolódás");
+    Serial.println("Sikertelen WiFi kapcsolódás!");
   } else {
     Serial.println("");
     Serial.println("WiFi kapcsolódás sikeres!");  
@@ -103,10 +105,16 @@ void setup()
   
  }
 
+//################################################################################################################################################################################################################################# 
+
 void loop()
 {
-  float paratartalom= dht.readHumidity();
-  float homersekletCelsius= dht.readTemperature();
+  if(digitalRead(resetButtonpin) == HIGH){
+    Serial.println("ESP8266 újraindítása, kérlek várj...");
+    ESP.restart();
+  }
+  paratartalom= dht.readHumidity();
+  homersekletCelsius= dht.readTemperature();
   levegominosegPpm = analogRead(0);
 
   if (isnan(paratartalom) || isnan(homersekletCelsius)){
@@ -155,6 +163,8 @@ void loop()
   digitalWrite(AdatLEDpin, LOW);
 }
 
+//#################################################################################################################################################################################################################################
+
 void homersekletKuldes(int paratartalom, int homerseklet){
   const char *URL = "http://192.168.21.74/Project2024/public/api/fusterzekelo/beszuras";
   String data = "paratartalom="+String(paratartalom)+"&homerseklet="+String(homerseklet);
@@ -167,6 +177,8 @@ void homersekletKuldes(int paratartalom, int homerseklet){
   Serial.print("Páratartalom és hőmérséklet RESPONSE: ");
   Serial.println(content);
 }
+
+//#################################################################################################################################################################################################################################
 
 void legminosegKuldes(int ppm){
   const char *URL = "http://192.168.21.74/Project2024/public/api/fusterzekelo/beszuras";
