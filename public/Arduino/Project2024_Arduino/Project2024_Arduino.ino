@@ -111,6 +111,9 @@ void loop()
 {
   if(digitalRead(resetButtonpin) == HIGH){
     Serial.println("ESP8266 újraindítása, kérlek várj...");
+    digitalWrite(AllapotLEDpin, HIGH);
+    delay(500); 
+    digitalWrite(AllapotLEDpin, LOW);
     ESP.restart();
   }
   paratartalom= dht.readHumidity();
