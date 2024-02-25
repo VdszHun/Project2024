@@ -8,10 +8,12 @@
 
 </div>
 
+
+
 <table class="table table-striped table-bordered table-responsive ">
     <tr>
         <td>
-            <h3>Alaksor</h3>
+            <h3>Alagsor</h3>
 
             <div class="row">
 

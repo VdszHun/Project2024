@@ -11,7 +11,7 @@ use App\Models\Fust1Model;
 class Fusterzekelo1Controller extends Controller
 {
     public function index(){
-        $fusterzekelo1 = Fust1Model::orderBy('f1_id', 'DESC')->paginate(10);
+        $fusterzekelo1 = Fust1Model::orderBy('f1_id', 'DESC')->paginate(9);
         return view('fusterzekelo1',['fusterzekelo1' => $fusterzekelo1]);
     }
 

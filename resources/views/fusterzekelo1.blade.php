@@ -3,7 +3,11 @@
 @section('content')
 
 <div>
-    <h1>Füstérzékelő 1</h1>
+    <h1>Füstérzékelő #(terem száma)</h1>
+
+
+    <img src="{{asset('IMGS/terem_alks_048.jpg')}}" alt="" srcset="">
+
 
     <div class="table-responsive">
         <table class="table table-primary table-stripped table-hover">
