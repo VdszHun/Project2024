@@ -41,7 +41,6 @@ WiFiClient client;
 const int AOUTpin = A0;
 const int AdatLEDpin = D1;
 const int AllapotLEDpin = D2;
-const int levegominosegAdatpin = D3;
 const int resetButtonpin = D4;
 float paratartalom;
 float homersekletCelsius;
@@ -54,7 +53,6 @@ void setup()
   pinMode(AdatLEDpin, OUTPUT);
   pinMode(AllapotLEDpin, OUTPUT);
   pinMode(AOUTpin, INPUT);
-  pinMode(levegominosegAdatpin, INPUT);
   pinMode(resetButtonpin, INPUT);
 
   Serial.begin(9600);
@@ -161,7 +159,7 @@ void loop()
 
   digitalWrite(AdatLEDpin, HIGH);
 
-  delay(10000); 
+  delay(6000); 
 
   digitalWrite(AdatLEDpin, LOW);
 }
