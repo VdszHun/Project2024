@@ -12,4 +12,7 @@ class Meres extends Model
     public $primaryKey = "m_id";
     public $timestamps = false;
     public $guarded = [];
+
+
+
 }

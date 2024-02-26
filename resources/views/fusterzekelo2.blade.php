@@ -6,14 +6,14 @@
 
     <div class="container-fluid mb-4 eotvos_leftmenu">
     
-        <h1 class="text-center">Füstérzékelő #(terem száma)</h1>
+        <h1 class="text-center">Füstérzékelő #({{$fusterzekelo->h_id}})</h1>
     
     </div>
     
     <div class="row">
         <div class="col-md-6 col-sm-12">
         
-            <img src="{{asset('IMGS/terem_alks_048.jpg')}}" alt="terem terv rajz" title="terem terv rajz" srcset="" class="img img-fluid rounded mb-4">
+            <img src="{{asset('IMGS/terem_alks_.jpg')}}" alt="terem terv rajz" title="terem terv rajz" srcset="" class="img img-fluid rounded mb-4">
         
         </div>
         <div class="col-md-6 col-sm-12">
@@ -85,38 +85,10 @@
         
                 </table>
         
-                {{$fusterzekelo2->links() }}
             </div>
 
         </div>
-        <div class="col-md-6 col-sm-12">
 
-            
-            <h4>Az második érzékelő adatai</h4>
-            <div class="table-responsive">
-                <table class="table table-primary table-stripped table-hover text-center">
-                    <tr>
-                        <th>Id</th>
-                        <th>Légminőség</th>
-                        <th>Hőmérséklet</th>
-                        <th>Páratartalom</th>
-                        <th>Mérés ideje</th>
-                    </tr>
-                    @foreach ($fusterzekelo2 as $fust2)
-                    <tr>
-                        <td>{{$fust2->f2_id}}</td>
-                        <td>{{$fust2->f2_legminoseg}}</td>
-                        <td>{{$fust2->f2_hofok}} &deg;C</td>
-                        <td>{{$fust2->f2_paratartalom}}%</td>
-                        <td>{{$fust2->f2_meres_ideje}}</td>
-                    </tr>
-                    @endforeach
-
-                </table>
-
-                {{$fusterzekelo2->links() }}
-            </div>
-        </div>
             
         </div>
     </div>

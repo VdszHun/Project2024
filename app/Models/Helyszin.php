@@ -14,8 +14,8 @@ class Helyszin extends Model
     public $timestamps = false;
     public $guarded = [];
 
-    public function meresek(): BelongsToMany{
+    public function meresek(){
 
-        return $this->belongsToMany(Meres::class,'meresek', 'h_id', 'h_id');
+        return $this->hasMany(Meres::class, 'h_id', 'h_id');
     }
 }

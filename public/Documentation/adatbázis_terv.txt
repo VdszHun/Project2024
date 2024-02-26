@@ -1,0 +1,14 @@
+helyszinek:
+-h_id(idegen kulcs)
+-terem_szam
+-eszköz_ip
+
+meresek:
+-m_id
+-h_id(idegen kulcs)
+-ppm
+-homerseklet
+-paratartalom
+-hibakod
+-rogzitesideje
+
