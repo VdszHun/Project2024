@@ -20,45 +20,39 @@
 
             <div class="m-2 text-center eotvos_leftmenu rounded-start p-2">
 
-                <h6>Elg útóbbi adatatok első érzékelő</h6>
+                <h6>Leguttóbi riaszás:</h6>
 
-                <table class="table table-primary table-stripped table-hover text-center">
-                    <tr>
-                        <th>Id</th>
-                        <th>Légminőség</th>
-                        <th>Hőmérséklet</th>
-                        <th>Páratartalom</th>
-                        <th>Mérés ideje</th>
-                    </tr>
-                    <tr>
-                        <td>{{$fusterzekelo2[0]->f2_id}}</td>
-                        <td>{{$fusterzekelo2[0]->f2_legminoseg}}</td>
-                        <td>{{$fusterzekelo2[0]->f2_hofok}} &deg;C</td>
-                        <td>{{$fusterzekelo2[0]->f2_paratartalom}}%</td>
-                        <td>{{$fusterzekelo2[0]->f2_meres_ideje}}</td>
-                    </tr>
-        
-                </table>
+                    <div class="row bg-secondary m-2">
+                        <div class="col-md-4">
+                            Dátúm és idő: <br>
+                            2024-02-26 14:54:51
+                        </div>
+                        <div class="col-md-4">
+                            Terem: <br>
+                            350
+                        </div>
+                        <div class="col-md-4">
+                            Eszköz: <br>
+                            192.168.82.4
+                        </div>
+                    </div>
 
-                <h6>Elg útóbbi adatatok második érzékelő</h6>
+                <h6>Leguttóbi hiba jelzés: </h6>
 
-                <table class="table table-primary table-stripped table-hover text-center">
-                    <tr>
-                        <th>Id</th>
-                        <th>Légminőség</th>
-                        <th>Hőmérséklet</th>
-                        <th>Páratartalom</th>
-                        <th>Mérés ideje</th>
-                    </tr>
-                    <tr>
-                        <td>{{$fusterzekelo2[0]->f2_id}}</td>
-                        <td>{{$fusterzekelo2[0]->f2_legminoseg}}</td>
-                        <td>{{$fusterzekelo2[0]->f2_hofok}} &deg;C</td>
-                        <td>{{$fusterzekelo2[0]->f2_paratartalom}}%</td>
-                        <td>{{$fusterzekelo2[0]->f2_meres_ideje}}</td>
-                    </tr>
-        
-                </table>
+                <div class="row bg-secondary m-2">
+                    <div class="col-md-4">
+                        Dátúm és idő: <br>
+                        2024-02-26 14:54:51
+                    </div>
+                    <div class="col-md-4">
+                        Terem: <br>
+                        350
+                    </div>
+                    <div class="col-md-4">
+                        Eszköz: <br>
+                        192.168.82.4
+                    </div>
+                </div>
 
             </div>
 
@@ -79,13 +73,13 @@
                         <th>Páratartalom</th>
                         <th>Mérés ideje</th>
                     </tr>
-                    @foreach ($fusterzekelo2 as $fust2)
+                    @foreach ($fusterzekelo->meresek as $egymeres)
                     <tr>
-                        <td>{{$fust2->f2_id}}</td>
-                        <td>{{$fust2->f2_legminoseg}}</td>
-                        <td>{{$fust2->f2_hofok}} &deg;C</td>
-                        <td>{{$fust2->f2_paratartalom}}%</td>
-                        <td>{{$fust2->f2_meres_ideje}}</td>
+                        <td>{{$egymeres->m_id}}</td>
+                        <td>{{$egymeres->h_id}}</td>
+                        <td>{{$egymeres->ppm}} &deg;C</td>
+                        <td>{{$egymeres->paratartalom}}%</td>
+                        <td>{{$egymeres->meres_ideje}}</td>
                     </tr>
                     @endforeach
         

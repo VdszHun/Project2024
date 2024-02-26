@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Fust2Model extends Model
+class Helyszin extends Model
 {
     use HasFactory;
     public $table = "helyszinek";
@@ -13,4 +14,8 @@ class Fust2Model extends Model
     public $timestamps = false;
     public $guarded = [];
 
+    public function meresek(): BelongsToMany{
+
+        return $this->belongsToMany(Meres::class,'meresek', 'h_id', 'h_id');
+    }
 }

@@ -10,6 +10,9 @@ Route::get('/', function () {
     return view('welcome');
 })->name("fooldal");
 
+
+Route::get('/fusterzekelo2/{hid}',[Fusterzekelo2Controller::class,'index']);
+
+
 Route::get('/fusterzekelo1',[Fusterzekelo1Controller::class,'index'])->name('fusterzekelo1');
-Route::get('/fusterzekelo2',[Fusterzekelo2Controller::class,'index'])->name('fusterzekelo2');
 Route::get('/teremfelvetel',[fooldalController::class,'felveteindex'])->name('teremplus');

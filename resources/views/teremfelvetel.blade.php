@@ -2,7 +2,7 @@
 @section('title', "Terem hozzá adás")
 @section('content')
 
-<form action="">
+<form method="POST">
 
     <div class="container-fluid mb-4 eotvos_leftmenu">
     
@@ -14,7 +14,7 @@
         <legend class="scheduler-border">Kérem adja meg az adatokat a terem hozzá adáshoz</legend>
 
         <label for="teremszam" class="mt-3">Terem száma: </label><br>
-        <input type="number" name="teremszam" id="teremszam" min="0" max="400"> <br>
+        <input type="number" name="teremszam" id="teremszam" min="0" max="400" value="{{old('teremszam')}}"> <br>
         <label for="teremszint" class="mt-3">Terem emelet szintje: </label><br>
             <select name="teremszint" id="teremszint">
                 <option value="0" selected>Alagsor</option>

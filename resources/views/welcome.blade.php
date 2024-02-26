@@ -19,7 +19,7 @@
 
                 <div class="col-smb-12 col-md-12 col-lg-5 mb-1">
 
-                    <a class="fooldal_link_no_deco" href="{{route('fusterzekelo1')}}">
+                    <a class="fooldal_link_no_deco" href="">
                     <div class="card eotvos_leftmenu" style="width: 12rem;">
                         <img src="{{asset('IMGS/terem_alks_048.jpg')}}" class="card-img-top" title="terem: 048" alt="terem: 048">
                         <div class="card-body">
@@ -32,7 +32,7 @@
             
                 <div class="col-smb-12 col-md-12 col-lg-5 mb-1">
                  
-                    <a class="fooldal_link_no_deco" href="{{route('fusterzekelo2')}}">
+                    <a class="fooldal_link_no_deco" href="./fusterzekelo2/1">
                     <div class="card eotvos_leftmenu" style="width: 12rem;">
                         <img src="imgs/terem_alks_048.jpg" class="card-img-top" title="terem: 047" alt="terem: 047">
                         <div class="card-body">
@@ -68,7 +68,7 @@
             
                 <div class="col-smb-12 col-md-5 col-lg-3 mb-1">
                  
-                    <a class="fooldal_link_no_deco" href="{{route('fusterzekelo2')}}">
+                    <a class="fooldal_link_no_deco" href="">
                     <div class="card eotvos_leftmenu" style="width: 12rem;">
                         <img src="imgs/terem_alks_048.jpg" class="card-img-top" title="terem: 147" alt="terem: 147">
                         <div class="card-body">
@@ -94,7 +94,7 @@
             
                 <div class="col-smb-12 col-md-4 col-lg-3 mb-1">
                  
-                    <a class="fooldal_link_no_deco" href="{{route('fusterzekelo2')}}">
+                    <a class="fooldal_link_no_deco" href="">
                     <div class="card eotvos_leftmenu" style="width: 12rem;">
                         <img src="imgs/terem_alks_048.jpg" class="card-img-top" title="terem: 107" alt="terem: 107">
                         <div class="card-body">
@@ -131,7 +131,7 @@
           
               <div class="col-smb-12 col-md-12 col-lg-5 mb-1">
                
-                  <a class="fooldal_link_no_deco" href="{{route('fusterzekelo2')}}">
+                  <a class="fooldal_link_no_deco" href="">
                   <div class="card eotvos_leftmenu" style="width: 12rem;">
                       <img src="imgs/terem_alks_048.jpg" class="card-img-top" title="terem: 247" alt="terem: 247">
                       <div class="card-body">
@@ -165,7 +165,7 @@
           
               <div class="col-smb-12 col-md-8 col-lg-3 mb-1">
                
-                  <a class="fooldal_link_no_deco" href="{{route('fusterzekelo2')}}">
+                  <a class="fooldal_link_no_deco" href="">
                   <div class="card eotvos_leftmenu" style="width: 12rem;">
                       <img src="imgs/terem_alks_048.jpg" class="card-img-top" title="terem: 347" alt="terem: 347">
                       <div class="card-body">

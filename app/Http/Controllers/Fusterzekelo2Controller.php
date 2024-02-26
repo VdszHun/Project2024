@@ -6,13 +6,19 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Fust2Model;
+use App\Models\Helyszin;
 
 class Fusterzekelo2Controller extends Controller
 {
-    public function index(){
-        $fusterzekelo2 = Fust2Model::orderBy('f2_id', 'DESC')->paginate(9);
-        return view('fusterzekelo2',['fusterzekelo2' => $fusterzekelo2]);
+    public function index($hid){
+        //$fusterzekelo2 = Helyszin::orderBy('h_id', 'DESC')->paginate(9);
+        
+        $fusterzekelo = Helyszin::find($hid);
+        if($fusterzekelo){
+            return view('fusterzekelo2',['fusterzekelo' => $fusterzekelo]);
+        }
+        return redirect()->route('fooldal');
+        #
     }
 
     //API
