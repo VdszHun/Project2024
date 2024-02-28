@@ -2,19 +2,20 @@
 @section('title', "Terem hozzá adás")
 @section('content')
 
-<form method="POST">
+<form method="POST" action="" enctype="multipart/form-data">
+    @csrf
 
     <div class="container-fluid mb-4 eotvos_leftmenu">
-    
+
         <h1 class="text-center">Terem felvétel</h1>
-    
+
     </div>
 
     <fieldset class="scheduler-border mb-4">
         <legend class="scheduler-border">Kérem adja meg az adatokat a terem hozzá adáshoz</legend>
 
         <label for="teremszam" class="mt-3">Terem száma: </label><br>
-        <input type="number" name="teremszam" id="teremszam" min="0" max="400" value="{{old('teremszam')}}"> <br>
+        <input type="number" name="teremszam" id="teremszam" min="0" max="400" value="{{old('teremszam')}}" required> <br>
         <label for="teremszint" class="mt-3">Terem emelet szintje: </label><br>
             <select name="teremszint" id="teremszint">
                 <option value="0" selected>Alagsor</option>
@@ -24,9 +25,11 @@
             </select>
             <br>
         <label for="ipaddress" class="mt-3">Terem ipcímzése: </label><br>
-        <input type="text" name="ipaddress" id="ipaddress" placeholder="172.16.0.0"> <br>
-        <label for="" class="mt-3">Terem képe: </label> <br>
-        <input type="file" name="terempic" id="terempic" class="btn btn-secondary">
+        <input type="text" name="ipaddress" id="ipaddress" placeholder="172.16.0.0" required> <br>
+        <label for="terem_nev" class="mt-3">Terem megnevezése: </label><br>
+        <input type="text" name="terem_nev" id="terem_nev" placeholder="pl: Tanári, Tanterem" required> <br>
+        <label for="terempic" class="mt-3">Terem képe: </label> <br>
+        <input type="file" name="terempic" id="terempic" class="btn btn-secondary" required>
 
     </fieldset>
 
@@ -37,7 +40,7 @@
         </svg>
         Feltöltés
     </button>
-    
+
 
 
 </form>

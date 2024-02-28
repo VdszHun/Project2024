@@ -1,6 +1,7 @@
 helyszinek:
 -h_id(idegen kulcs)
--terem_szam
+-terem_szint
+-terem_descript
 -eszköz_ip
 
 meresek:

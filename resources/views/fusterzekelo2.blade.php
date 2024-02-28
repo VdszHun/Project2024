@@ -5,16 +5,16 @@
 <div>
 
     <div class="container-fluid mb-4 eotvos_leftmenu">
-    
+
         <h1 class="text-center">Füstérzékelő #({{$fusterzekelo->h_id}})</h1>
-    
+
     </div>
-    
+
     <div class="row">
         <div class="col-md-6 col-sm-12">
-        
-            <img src="{{asset('IMGS/terem_alks_.jpg')}}" alt="terem terv rajz" title="terem terv rajz" srcset="" class="img img-fluid rounded mb-4">
-        
+
+            <img src="{{asset('storage/teremkepek/1.jpg')}}" alt="terem terv rajz" title="terem terv rajz" srcset="" class="img img-fluid rounded mb-4">
+
         </div>
         <div class="col-md-6 col-sm-12">
 
@@ -82,14 +82,14 @@
                         <td>{{$egymeres->meres_ideje}}</td>
                     </tr>
                     @endforeach
-        
+
                 </table>
-        
+
             </div>
 
         </div>
 
-            
+
         </div>
     </div>
 
