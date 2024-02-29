@@ -23,7 +23,7 @@
             <div class="card eotvos_leftmenu" style="width: 12rem; ">
               <img src="{{asset('storage/teremkepek/1.jpg')}}" class="card-img-top" title="terem: 047" alt="terem: 047">
               <div class="card-body">
-                <p class="card-text"><h4>TEREM: 047</h4><br/>Női mosdó</p>
+                <p class="card-text"><h4>TEREM: {{$mainpage->h_id[0]}}</h4><br/>Női mosdó</p>
               </div>
             </div>
           </a>

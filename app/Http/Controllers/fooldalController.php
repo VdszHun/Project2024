@@ -13,8 +13,9 @@ class fooldalController extends Controller
     public function main_page(){
 
         $mainpage = Helyszin::all();
-
-        return view('welcome',['mainpage' => $mainpage]);
+        if($mainpage){
+            return view('welcome',['mainpage' => $mainpage]);
+        }
     }
 
     public function felveteindex(){
