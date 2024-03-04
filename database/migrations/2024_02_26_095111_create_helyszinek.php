@@ -15,6 +15,7 @@ return new class extends Migration
         Schema::create('helyszinek', function (Blueprint $table) {
             $table->id("h_id");
             $table->integer('terem_szint');
+            $table->integer('terem_szam');
             $table->string('terem_descript');
             $table->ipAddress('eszköz_ip');
         });

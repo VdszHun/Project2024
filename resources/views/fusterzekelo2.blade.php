@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-md-6 col-sm-12">
 
-            <img src="{{asset('storage/teremkepek/1.jpg')}}" alt="terem terv rajz" title="terem terv rajz" srcset="" class="img img-fluid rounded mb-4">
+            <img src="{{asset('storage/teremkepek/'.$fusterzekelo->terem_szam.'.jpg')}}" alt="terem terv rajz" title="terem terv rajz" srcset="" class="img img-fluid rounded mb-4">
 
         </div>
         <div class="col-md-6 col-sm-12">
@@ -61,9 +61,9 @@
 
 
     <div class="row">
-        <div class="col-md-6 col-sm-12">
+        <div class="col-12">
 
-            <h4>Az első érzékelő adatai</h4>
+            <h4>Azérzékelő adatai</h4>
             <div class="table-responsive">
                 <table class="table table-primary table-stripped table-hover text-center">
                     <tr>

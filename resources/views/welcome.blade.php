@@ -11,123 +11,86 @@
 
 
 <div class="row">
-  <div class="col-6">
+  <div class="col-sm-12 col-md-6">
     Alagsor <br>
 
 
-    @for ($i = 1; $i <= 10; $i++)
+    @foreach ($alagsor as $egyalagsor)
+    <div class="col-sm-12 col-md-3 my-3 mx-3" style="float: left; ">
+      <a class="fooldal_link_no_deco" href="./fusterzekelo2/1">
 
-        <div class="col-sm-12 col-md-3 my-3 mx-3" style="float: left; ">
-          <a class="fooldal_link_no_deco" href="./fusterzekelo2/1">
-
-            <div class="card eotvos_leftmenu" style="width: 12rem; ">
-              <img src="{{asset('storage/teremkepek/1.jpg')}}" class="card-img-top" title="terem: 047" alt="terem: 047">
-              <div class="card-body">
-                <p class="card-text"><h4>TEREM: {{$mainpage->h_id[0]}}</h4><br/>Női mosdó</p>
-              </div>
-            </div>
-          </a>
+        <div class="card eotvos_leftmenu" style="width: 12rem; ">
+          <img src="{{asset('storage/teremkepek/'.$egyalagsor->terem_szam.'.jpg')}}" class="card-img-top" title="terem: {{$egyalagsor->terem_szam}}" alt="terem: {{$egyalagsor->terem_szam}}">
+          <div class="card-body">
+            <p class="card-text"><h4>TEREM: {{$egyalagsor->terem_szam}}</h4><br/>{{$egyalagsor->terem_descript}}</p>
+          </div>
         </div>
-
-    @endfor
+      </a>
+    </div>
+    @endforeach
 
 
 
 
   </div>
-  <div class="col-6">
-    Főld szint
+  <div class="col-sm-12 col-md-6">
+    Főld szint <br>
+
+    @foreach ($foldszint as $egyfoldszint)
+    <div class="col-sm-12 col-md-3 my-3 mx-3" style="float: left; ">
+      <a class="fooldal_link_no_deco" href="./fusterzekelo2/1">
+
+        <div class="card eotvos_leftmenu" style="width: 12rem; ">
+          <img src="{{asset('storage/teremkepek/'.$egyfoldszint->terem_szam.'.jpg')}}" class="card-img-top" title="terem: {{$egyfoldszint->terem_szam}}" alt="terem: {{$egyalagsor->terem_szam}}">
+          <div class="card-body">
+            <p class="card-text"><h4>TEREM: {{$egyfoldszint->terem_szam}}</h4><br/>{{$egyfoldszint->terem_descript}}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    @endforeach
+
   </div>
-  <div class="col-6">Első emelet</div>
-  <div class="col-6">Második emelet</div>
+  <div class="col-sm-12 col-md-6">
+    Első emelet <br>
+ 
+    @foreach ($elsoszint as $egyelsoszint)
+    <div class="col-sm-12 col-md-3 my-3 mx-3" style="float: left; ">
+      <a class="fooldal_link_no_deco" href="./fusterzekelo2/1">
+
+        <div class="card eotvos_leftmenu" style="width: 12rem; ">
+          <img src="{{asset('storage/teremkepek/1.jpg')}}" class="card-img-top " title="terem: {{$egyelsoszint->terem_szam}}" alt="terem: {{$egyalagsor->terem_szam}}">
+          <div class="card-body">
+            <p class="card-text"><h4>TEREM: {{$egyelsoszint->terem_szam}}</h4><br/>{{$egyelsoszint->terem_descript}}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    @endforeach
+
+  </div>
+
+
+  <div class="col-sm-12 col-md-6">
+    Második emelet <br>
+
+    @foreach ($masodikszint as $egymasodikszint)
+    <div class="col-sm-12 col-md-3 my-3 mx-3" style="float: left; ">
+      <a class="fooldal_link_no_deco" href="./fusterzekelo2/1">
+
+        <div class="card eotvos_leftmenu" style="width: 12rem; ">
+          <img src="{{asset('storage/teremkepek/'.$egymasodikszint->terem_szam.'.jpg')}}" class="card-img-top" title="terem: {{$egymasodikszint->terem_szam}}" alt="terem: {{$egyalagsor->terem_szam}}">
+          <div class="card-body">
+            <p class="card-text"><h4>TEREM: {{$egymasodikszint->terem_szam}}</h4><br/>{{$egymasodikszint->terem_descript}}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    @endforeach
+
+  </div>
+
 </div>
 
-
-
-<br>
-
-<table class="table table-striped table-bordered table-responsive ">
-    <tr>
-        <td>
-            <h3>Alagsor</h3>
-
-            <div class="row">
-
-
-              <div class="col-smb-12 col-md-3 mb-3">
-                  <a class="fooldal_link_no_deco" href="./fusterzekelo2/1">
-
-                    <div class="card eotvos_leftmenu" style="width: 12rem;">
-                      <img src="imgs/terem_alks_048.jpg" class="card-img-top" title="terem: 047" alt="terem: 047">
-                      <div class="card-body">
-                        <p class="card-text"><h4>TEREM: 047</h4><br/>Női mosdó</p>
-                      </div>
-                    </div>
-                  </a>
-              </div>
-
-
-              <div class="col-smb-12 col-md-3 mb-3">
-                <a class="fooldal_link_no_deco" href="./fusterzekelo2/1">
-
-                  <div class="card eotvos_leftmenu" style="width: 12rem;">
-                    <img src="imgs/terem_alks_048.jpg" class="card-img-top" title="terem: 047" alt="terem: 047">
-                    <div class="card-body">
-                      <p class="card-text"><h4>TEREM: 047</h4><br/>Női mosdó</p>
-                    </div>
-                  </div>
-                </a>
-              </div>
-
-
-              <div class="col-smb-12 col-md-3 mb-3">
-                <a class="fooldal_link_no_deco" href="./fusterzekelo2/1">
-
-                  <div class="card eotvos_leftmenu" style="width: 12rem;">
-                    <img src="imgs/terem_alks_048.jpg" class="card-img-top" title="terem: 047" alt="terem: 047">
-                    <div class="card-body">
-                      <p class="card-text"><h4>TEREM: 047</h4><br/>Női mosdó</p>
-                    </div>
-                  </div>
-                </a>
-              </div>
-
-
-            </div>
-
-        </td>
-        <td>
-            <h3>Főldszint</h3>
-
-            <div class="row">
-
-
-
-
-            </div>
-
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <h3>Első elemet</h3>
-
-
-
-          </div>
-
-        </td>
-        <td>
-            <h3>Második elemet</h3>
-
-            <div class="row">
-
-
-
-          </div>
-
-        </td>
-    </tr>
-</table>
 
 @endsection
