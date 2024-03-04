@@ -1,0 +1,5 @@
+A monytatás során szeretnék egy két modelt ami többször is vannak, ezek alátámasztások, és ezek a következők:
+-wemos_holder 4db
+-tok_to_tok_bottom 4db
+
+Illetve ami az arduino_parts mappában szerepelnek modellek azokat nem kell kinyomtatni.
