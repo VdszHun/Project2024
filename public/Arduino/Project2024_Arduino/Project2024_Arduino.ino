@@ -1,5 +1,5 @@
 /*
-Szükséges board, 2024. 01. 28-tól  viszonyítva:
+Szükséges board, 2024. 03. 04-től  viszonyítva:
 
 Boardnév: esp8266
 Verzió: 3.1.2
@@ -8,7 +8,7 @@ http://arduino.esp8266.com/stable/package_esp8266com_index.json
 
 A link csatolása és elfogadása után letölthetővé válik a board a Boards Managerben.
 
-Szükséges könyvtárak, 2024. 02. 25-től viszonyítva:
+Szükséges könyvtárak, 2024. 03. 04-től viszonyítva:
 
 Könyvtárnév: Adafruit Unified Sensor
 Verzió: 1.1.14
@@ -41,7 +41,6 @@ WiFiClient client;
 const int AOUTpin = A0;
 const int AdatLEDpin = D1;
 const int AllapotLEDpin = D2;
-const int resetButtonpin = D4;
 float paratartalom;
 float homersekletCelsius;
 int levegominosegPpm;
@@ -53,7 +52,6 @@ void setup()
   pinMode(AdatLEDpin, OUTPUT);
   pinMode(AllapotLEDpin, OUTPUT);
   pinMode(AOUTpin, INPUT);
-  pinMode(resetButtonpin, INPUT);
 
   Serial.begin(9600);
   dht.begin();
@@ -100,20 +98,34 @@ void setup()
     digitalWrite(AllapotLEDpin, LOW);
   }
 
+  //LED setup teszt
+  digitalWrite(AdatLEDpin, HIGH);
+  digitalWrite(AllapotLEDpin, HIGH);
+  delay(3000);
+  digitalWrite(AdatLEDpin, LOW);
+  digitalWrite(AllapotLEDpin, LOW);
   
  }
 
 //################################################################################################################################################################################################################################# 
 
+void adatKuldes(float paratartalom, float homerseklet, int ppm, String eszköz_ip){
+  const char *URL = "http://192.168.21.74/Project2024/public/api/fusterzekelo2/beszuras";
+  String data = "paratartalom="+String(paratartalom)+"&homerseklet="+String(homerseklet)+"&ppm="+String(ppm)+"&eszköz_ip="+String(eszköz_ip);
+  httpClient.begin(client,URL);
+  httpClient.addHeader("Content-Type","application/x-www-form-urlencoded");
+  httpClient.POST(data);
+  String content = httpClient.getString();
+  httpClient.end();
+  Serial.println(" ");
+  Serial.print("Páratartalom, hőmérséklet és levegőminőség RESPONSE: ");
+  Serial.println(content);
+}
+
+//#################################################################################################################################################################################################################################
+
 void loop()
 {
-  if(digitalRead(resetButtonpin) == HIGH){
-    Serial.println("ESP8266 újraindítása, kérlek várj...");
-    digitalWrite(AllapotLEDpin, HIGH);
-    delay(500); 
-    digitalWrite(AllapotLEDpin, LOW);
-    ESP.restart();
-  }
   paratartalom= dht.readHumidity();
   homersekletCelsius= dht.readTemperature();
   levegominosegPpm = analogRead(0);
@@ -135,7 +147,8 @@ void loop()
     Serial.print("  ||  ");
     Serial.print("Hőmérséklet: ");
     Serial.print(homersekletCelsius);
-    Serial.print(" °C");
+    Serial.print("°C");
+    Serial.print("  ||  ");
     } 
 
   if (levegominosegPpm <= 10){
@@ -150,47 +163,16 @@ void loop()
   }else{
     Serial.print("Levegőminőség: ");
     Serial.print(levegominosegPpm, DEC);
-    Serial.println(" ppm");
+    Serial.print(" ppm");
+    Serial.print("  ||  ");
   }
 
   //Adatküldés és annak a LED jelzése
-  homersekletKuldes(paratartalom, homersekletCelsius);
-  legminosegKuldes(levegominosegPpm);
-
+  Serial.println(WiFi.localIP().toString());
+  adatKuldes(paratartalom, homersekletCelsius, levegominosegPpm, WiFi.localIP().toString());
   digitalWrite(AdatLEDpin, HIGH);
 
   delay(6000); 
 
   digitalWrite(AdatLEDpin, LOW);
-}
-
-//#################################################################################################################################################################################################################################
-
-void homersekletKuldes(int paratartalom, int homerseklet){
-  const char *URL = "http://192.168.21.74/Project2024/public/api/fusterzekelo/beszuras";
-  String data = "paratartalom="+String(paratartalom)+"&homerseklet="+String(homerseklet);
-  httpClient.begin(client,URL);
-  httpClient.addHeader("Content-Type","application/x-www-form-urlencoded");
-  httpClient.POST(data);
-  String content = httpClient.getString();
-  httpClient.end();
-  Serial.println(" ");
-  Serial.print("Páratartalom és hőmérséklet RESPONSE: ");
-  Serial.println(content);
-}
-
-//#################################################################################################################################################################################################################################
-
-void legminosegKuldes(int ppm){
-  const char *URL = "http://192.168.21.74/Project2024/public/api/fusterzekelo/beszuras";
-  String data = "ppm="+String(ppm);
-  httpClient.begin(client,URL);
-  httpClient.addHeader("Content-Type","application/x-www-form-urlencoded");
-  httpClient.POST(data);
-  String content = httpClient.getString();
-  httpClient.end();
-  Serial.println(" ");
-  Serial.print("Levegőminőség RESPONSE: ");
-  Serial.println(content);
-  Serial.println(" ");
 }
