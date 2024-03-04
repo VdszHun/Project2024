@@ -4,7 +4,7 @@
 
 <div class="container-fluid mb-4 eotvos_leftmenu">
 
-    <h1 class="text-center">Termek modosítása / törlése</h1>
+    <h1 class="text-center">Termek módosítása / törlése</h1>
 
 </div>
 
@@ -12,11 +12,11 @@
     <div class="row col-md-7 m-4">
         <table class="table table-primary table-stripped table-hover text-center table-bordered">
             <tr>
-                <th>terem #id</th>
-                <th>Terem szám</th>
-                <th>Terem szint</th>
-                <th>Eszköz ip</th>
-                <th>Modósítás</th>
+                <th>Terem #ID</th>
+                <th>Teremszám</th>
+                <th>Teremszint</th>
+                <th>Eszköz IP</th>
+                <th>Módosítás</th>
                 <th>Törlés</th>
             </tr>
 
@@ -31,7 +31,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wrench" viewBox="0 0 16 16">
                             <path d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.252A3.003 3.003 0 0 0 13 16a3 3 0 1 0-.851-5.878L5.897 3.781A3.004 3.004 0 0 0 2.223.1l2.141 2.142L4 4l-1.757.364zm13.37 9.019.528.026.287.445.445.287.026.529L15 13l-.242.471-.026.529-.445.287-.287.445-.529.026L13 15l-.471-.242-.529-.026-.287-.445-.445-.287-.026-.529L11 13l.242-.471.026-.529.445-.287.287-.445.529-.026L13 11z"/>
                         </svg>
-                        Modósítás
+                        Módosítás
                     </button></td>
                     <td><button type="button" class="btn btn-danger" onclick="torles({{$terem->h_id}});">
                         

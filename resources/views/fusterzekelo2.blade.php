@@ -20,11 +20,11 @@
 
             <div class="m-2 text-center eotvos_leftmenu rounded-start p-2">
 
-                <h6>Leguttóbi riaszás:</h6>
+                <h6>Legutóbbi riaszás:</h6>
 
                     <div class="row bg-secondary m-2">
                         <div class="col-md-4">
-                            Dátúm és idő: <br>
+                            Dátum és idő: <br>
                             2024-02-26 14:54:51
                         </div>
                         <div class="col-md-4">
@@ -37,11 +37,11 @@
                         </div>
                     </div>
 
-                <h6>Leguttóbi hiba jelzés: </h6>
+                <h6>Legutóbbi hibajelzés: </h6>
 
                 <div class="row bg-secondary m-2">
                     <div class="col-md-4">
-                        Dátúm és idő: <br>
+                        Dátum és idő: <br>
                         2024-02-26 14:54:51
                     </div>
                     <div class="col-md-4">
@@ -63,11 +63,11 @@
     <div class="row">
         <div class="col-12">
 
-            <h4>Azérzékelő adatai</h4>
+            <h4>Az érzékelő adatai</h4>
             <div class="table-responsive">
                 <table class="table table-primary table-stripped table-hover text-center">
                     <tr>
-                        <th>Id</th>
+                        <th>ID</th>
                         <th>Légminőség</th>
                         <th>Hőmérséklet</th>
                         <th>Páratartalom</th>

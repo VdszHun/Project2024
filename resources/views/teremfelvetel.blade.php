@@ -12,19 +12,19 @@
     </div>
 
     <fieldset class="scheduler-border mb-4">
-        <legend class="scheduler-border">Kérem adja meg az adatokat a terem hozzá adáshoz</legend>
+        <legend class="scheduler-border">Kérem adja meg az adatokat a terem hozzáadáshoz</legend>
 
         <label for="teremszam" class="mt-3">Terem száma: </label><br>
         <input type="number" name="teremszam" id="teremszam" min="0" max="400" value="{{old('teremszam')}}" required> <br>
         <label for="teremszint" class="mt-3">Terem emelet szintje: </label><br>
             <select name="teremszint" id="teremszint">
                 <option value="0" selected>Alagsor</option>
-                <option value="1">Főldszint</option>
+                <option value="1">Földszint</option>
                 <option value="2">Első elemet</option>
                 <option value="3">Második elemet</option>
             </select>
             <br>
-        <label for="ipaddress" class="mt-3">Terem ipcímzése: </label><br>
+        <label for="ipaddress" class="mt-3">Terem IP címzése: </label><br>
         <input type="text" name="ipaddress" id="ipaddress" placeholder="172.16.0.0" required> <br>
         <label for="terem_nev" class="mt-3">Terem megnevezése: </label><br>
         <input type="text" name="terem_nev" id="terem_nev" placeholder="pl: Tanári, Tanterem" required> <br>
