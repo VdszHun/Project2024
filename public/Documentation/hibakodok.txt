@@ -1,0 +1,5 @@
+Hibakódok az Arduinoban:
+
+0 = Minden megfelel, nincs hiba a rendszerben
+1 = Sikertelen páratartalom és hőmérskéklet beolvasás, ellenőrizd a kábeleket!
+2 = Sikertelen levegőminőség beolvasás, ellenőrizd a kábeleket!
