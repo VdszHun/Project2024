@@ -7,48 +7,73 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Helyszin;
+use App\Models\Meres;
 
 class Fusterzekelo2Controller extends Controller
 {
     public function index($hid){
         //$fusterzekelo2 = Helyszin::orderBy('h_id', 'DESC')->paginate(9);
-        
+
         $fusterzekelo = Helyszin::find($hid);
+        $fusterzekelodata = Meres::where('h_id',$hid)->paginate(9);
         if($fusterzekelo){
-            return view('fusterzekelo2',['fusterzekelo' => $fusterzekelo]);
+            return view('fusterzekelo2',['fusterzekelo' => $fusterzekelo, 'fusterzekelodata' => $fusterzekelodata]);
         }
         return redirect()->route('fooldal');
         #
     }
 
     //API
-    public function fust2create(Request $req){
+    public function create(Request $req){
         $fust2validalas = Validator::make(
             $req->all(),
             [
-                "f2_legminoseg" => "required",
-                "f2_hofok" => "required",
-                "f2_paratartalom" => "required"
+                "eszköz_ip" => "required",
+                "ppm" => "required",
+                "homerseklet" => "required",
+                "paratartalom" => "required",
+                "hibakod" => "required"
             ],
             [
-                "f2_legminoseg.required" => "Hiányzó légminőség!",
-                "f2_hofok.required" => "Hiányzó hőmérséklet!",
-                "f2_paratartalom.required" => "Hiányzó páratartalom!"
+                "eszköz_ip.required" => "Hianyzo eszkoz ip!",
+                "ppm.required" => "Hiányzó ppm ertek!",
+                "homerseklet.required" => "Hiányzó homerseklet ertek!",
+                "paratartalom.required" => "Hiányzó paratartalom ertek!",
+                "hibakod.required" => "Hiányzó hibakod!"
             ]
         );
-        if($fust2validalas->fails()){
+
+        if ($fust2validalas->fails()) {
             $data['message'] = "Hibás adatok";
             $data['errorList'] = $fust2validalas->messages();
-            return response()->json($data,400);
-        }else{
-            //Adatbázisba szúrni az adatokat
-            $fust2adatok = new Fust2Model;
-            $fust2adatok->f2_legminoseg = $req->input('f2_legminoseg');
-            $fust2adatok->f2_hofok = $req->input('f2_hofok');
-            $fust2adatok->f2_paratartalom = $req->input('f2_paratartalom');
-            $fust2adatok->f2_meres_ideje = date('Y-m-d H:i:s');
-            $fust2adatok->save();
-            return response()->json($fust2adatok,201);
+            return response()->json($data, 400);
+        } else {
+            try {
+                // Helyszín keresése az eszköz IP alapján
+                $location = Helyszin::where('eszköz_ip', $req->input('eszköz_ip'))->first();
+
+                // Ha találunk egyezést az eszköz IP-re, beszúrjuk az adatokat
+                if ($location) {
+                    $fustadatok = new Meres();
+                    $fustadatok->h_id = $location->h_id;
+                    $fustadatok->ppm = $req->input('ppm');
+                    $fustadatok->homerseklet = $req->input('homerseklet');
+                    $fustadatok->paratartalom = $req->input('paratartalom');
+                    $fustadatok->hibakod = $req->input('hibakod');
+                    $fustadatok->meres_ideje = date('Y-m-d H:i:s');
+
+                    $fustadatok->save();
+
+                    return response()->json($fustadatok, 201);
+                } else {
+                    // Ha nem talál egyezést, hibát adunk vissza
+                    return response()->json(['error' => 'Nem található helyszín az adott eszköz IP-vel.'], 404);
+                }
+            } catch (\Exception $e) {
+                // Hiba esetén visszatérés a hibakóddal
+                return response()->json(['error' => $e->getMessage()], 500);
+            }
         }
+
     }
 }

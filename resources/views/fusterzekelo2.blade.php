@@ -6,17 +6,26 @@
 
     <div class="container-fluid mb-4 eotvos_leftmenu">
 
-        <h1 class="text-center">Füstérzékelő #({{$fusterzekelo->h_id}})</h1>
+        <h1 class="text-center">Füstérzékelő #({{$fusterzekelo->terem_szam}})</h1>
 
     </div>
 
     <div class="row">
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-4 col-sm-12">
 
-            <img src="{{asset('storage/teremkepek/'.$fusterzekelo->terem_szam.'.jpg')}}" alt="terem terv rajz" title="terem terv rajz" srcset="" class="img img-fluid rounded mb-4">
+            <img src="{{asset('storage/teremkepek/'.$fusterzekelo->terem_szam.'.jpg')}}" alt="terem terv rajz" title="terem terv rajz" srcset="" class="img img-fluid rounded mb-4 ">
 
         </div>
-        <div class="col-md-6 col-sm-12">
+
+        <div class="col-md-1 col-sm-12">
+
+            <button type="button" class="btn btn-danger mb-3 w-100">Leállitás</button><br>
+            <button type="button" class="btn btn-info mb-3 w-100">Test led</button>
+
+
+        </div>
+
+        <div class="col-md-7 col-sm-12">
 
             <div class="m-2 text-center eotvos_leftmenu rounded-start p-2">
 
@@ -67,26 +76,23 @@
             <div class="table-responsive">
                 <table class="table table-primary table-stripped table-hover text-center">
                     <tr>
-                        <th>ID</th>
                         <th>Légminőség</th>
                         <th>Hőmérséklet</th>
                         <th>Páratartalom</th>
                         <th>Mérés ideje</th>
                     </tr>
-                    @foreach ($fusterzekelo->meresek as $egymeres)
+                    @foreach ($fusterzekelodata as $egymeres)
                     <tr>
-                        <td>{{$egymeres->m_id}}</td>
-                        <td>{{$egymeres->h_id}}</td>
-                        <td>{{$egymeres->ppm}} &deg;C</td>
+                        <td>{{$egymeres->ppm}} ppm</td>
+                        <td>{{$egymeres->homerseklet}} &deg;C</td>
                         <td>{{$egymeres->paratartalom}}%</td>
                         <td>{{$egymeres->meres_ideje}}</td>
                     </tr>
                     @endforeach
 
                 </table>
-
             </div>
-
+            {{$fusterzekelodata->links()}}
         </div>
 
 

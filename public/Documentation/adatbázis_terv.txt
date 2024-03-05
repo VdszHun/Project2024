@@ -12,5 +12,5 @@ meresek:
 -homerseklet
 -paratartalom
 -hibakod
--rogzitesideje
+-meres_ideje
 
