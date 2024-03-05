@@ -26,6 +26,16 @@ Ennek a könyvtárnak a letöltésekor fogadjuk el az ahhoz szükséges további
 
 #define DHTPIN D5
 #define DHTTYPE DHT11
+
+/*
+Módosítandó adatok füstérzékelő kihelyezésekor:
+ssid = A hálózat neve
+password = a hálózat jelszava
+
+Például:
+#define ssid "Cisco3"
+#define password "Eotvos2024"
+*/
 #define ssid "Cisco4"
 #define password "Eotvos2023"
 
