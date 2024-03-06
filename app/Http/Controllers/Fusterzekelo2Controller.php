@@ -15,7 +15,7 @@ class Fusterzekelo2Controller extends Controller
         //$fusterzekelo2 = Helyszin::orderBy('h_id', 'DESC')->paginate(9);
 
         $fusterzekelo = Helyszin::find($hid);
-        $fusterzekelodata = Meres::where('h_id',$hid)->paginate(9);
+        $fusterzekelodata = Meres::where('h_id',$hid)->orderBy('m_id', 'DESC')->paginate(9);
         if($fusterzekelo){
             return view('fusterzekelo2',['fusterzekelo' => $fusterzekelo, 'fusterzekelodata' => $fusterzekelodata]);
         }

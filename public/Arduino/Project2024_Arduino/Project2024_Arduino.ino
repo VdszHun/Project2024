@@ -1,3 +1,4 @@
+
 /*
 Szükséges board, 2024. 03. 04-től  viszonyítva:
 
@@ -23,11 +24,24 @@ Ennek a könyvtárnak a letöltésekor fogadjuk el az ahhoz szükséges további
 #include "DHT.h"
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
+#include <ESP8266WebServer.h>
 
 #define DHTPIN D5
 #define DHTTYPE DHT11
-#define ssid "Cisco4"
-#define password "Eotvos2023"
+
+/*
+Módosítandó adatok füstérzékelő kihelyezésekor:
+ssid = A hálózat neve
+password = a hálózat jelszava
+
+Például:
+#define ssid "Cisco3"
+#define password "Eotvos2024"
+*/
+#define ssid "Szűcs Home 2.4GHz"
+#define password "Dr.Bnha69Zen"
+
+ESP8266WebServer server(80); // Create a web server listening on port 80
 
 DHT dht(DHTPIN,DHTTYPE);
 /*IPAddress subnet(255,255,0,0);
@@ -46,6 +60,23 @@ float paratartalom;
 float homersekletCelsius;
 int levegominosegPpm;
 int hibakod = 0;
+bool datasend = HIGH;
+bool ledtest = HIGH;
+
+//#################################################################################################################################################################################################################################
+//web buttons void
+
+void handleToggledatasend() {
+  datasend = !datasend; // Toggle homero state
+
+  server.send(200, "text/plain", String(datasend)); // Send response back to client
+}
+
+void handleToggletestled() {
+  ledtest = !ledtest; // Toggle homero state
+
+  server.send(200, "text/plain", String(ledtest)); // Send response back to client
+}
 
 //#################################################################################################################################################################################################################################
 
@@ -63,17 +94,17 @@ void setup()
 
     //Állapot sikeres jelzés
     digitalWrite(AllapotLEDpin, HIGH);
-    delay(500); 
+    delay(500);
     digitalWrite(AllapotLEDpin, LOW);
   }else{
     Serial.println("Statikus IP konfigurálása sikertelen!");
     //Állapot sikertelen jelzés
     digitalWrite(AllapotLEDpin, HIGH);
-    delay(500); 
+    delay(500);
     digitalWrite(AllapotLEDpin, LOW);
     delay(500);
     digitalWrite(AllapotLEDpin, HIGH);
-    delay(500); 
+    delay(500);
     digitalWrite(AllapotLEDpin, LOW);
   }*/
 
@@ -92,13 +123,22 @@ void setup()
     Serial.println("Sikertelen WiFi kapcsolódás!");
   } else {
     Serial.println("");
-    Serial.println("WiFi kapcsolódás sikeres!");  
+    Serial.println("WiFi kapcsolódás sikeres!");
     Serial.println(WiFi.localIP());
     //Állapot sikeres jelzés
     digitalWrite(AllapotLEDpin, HIGH);
-    delay(500); 
+    delay(500);
     digitalWrite(AllapotLEDpin, LOW);
+
   }
+
+//#################################################################################################################################################################################################################################
+//webszerver címek
+
+      server.on("/datasend", HTTP_POST, handleToggledatasend);
+      server.on("/ledtest", HTTP_POST, handleToggletestled);
+      server.begin();
+      Serial.println("Server started");
 
   //LED setup teszt
   digitalWrite(AdatLEDpin, HIGH);
@@ -106,13 +146,13 @@ void setup()
   delay(3000);
   digitalWrite(AdatLEDpin, LOW);
   digitalWrite(AllapotLEDpin, LOW);
-  
+
  }
 
-//################################################################################################################################################################################################################################# 
+//#################################################################################################################################################################################################################################
 
 void adatKuldes(float paratartalom, float homerseklet, int ppm, String eszköz_ip, int hibakod){
-  const char *URL = "http://192.168.21.74/Project2024/public/api/fusterzekelo2/beszuras";
+  const char *URL = "http://192.168.0.15/Project2024/public/api/fusterzekelo/beszuras";
   String data = "paratartalom="+String(paratartalom)+"&homerseklet="+String(homerseklet)+"&ppm="+String(ppm)+"&eszköz_ip="+String(eszköz_ip)+"&hibakod="+String(hibakod);
   httpClient.begin(client,URL);
   httpClient.addHeader("Content-Type","application/x-www-form-urlencoded");
@@ -124,63 +164,166 @@ void adatKuldes(float paratartalom, float homerseklet, int ppm, String eszköz_i
   Serial.println(content);
 }
 
+void hibakodok(int hibakod){
+
+if(ledtest == LOW){
+
+      digitalWrite(AdatLEDpin, LOW);
+      digitalWrite(AllapotLEDpin, LOW);
+
+}else{
+
+        int time = 2000;
+        int rovid = 1000;
+        int hosszu = 3000;
+
+          switch (hibakod) {
+            case 0:
+                //code 0
+
+                digitalWrite(AllapotLEDpin, HIGH);
+                delay(time);
+                digitalWrite(AdatLEDpin, HIGH);
+                delay(rovid);
+                digitalWrite(AdatLEDpin, LOW);
+                Serial.println("code 0");
+              break;
+            case 1:
+
+                //code 1
+                digitalWrite(AdatLEDpin, LOW);
+
+                delay(time);
+                digitalWrite(AllapotLEDpin, HIGH);
+                delay(rovid);
+                digitalWrite(AllapotLEDpin, LOW);
+                delay(time);
+                digitalWrite(AllapotLEDpin, HIGH);
+                delay(hosszu);
+                digitalWrite(AllapotLEDpin, LOW);
+
+
+              break;
+            case 2:
+                //code 2
+                digitalWrite(AdatLEDpin, LOW);
+
+                delay(time);
+                digitalWrite(AllapotLEDpin, HIGH);
+                delay(rovid);
+                digitalWrite(AllapotLEDpin, LOW);
+
+                ciklushiba(2,AllapotLEDpin,hosszu,time);
+
+
+              break;
+            case 3:
+                //code 3
+                digitalWrite(AdatLEDpin, LOW);
+
+                ciklushiba(3,AllapotLEDpin,hosszu,time);
+
+                delay(time);
+                digitalWrite(AllapotLEDpin, HIGH);
+                delay(rovid);
+                digitalWrite(AllapotLEDpin, LOW);
+
+              break;
+            case 4:
+                //code 4
+                digitalWrite(AdatLEDpin, LOW);
+
+                ciklushiba(3,AllapotLEDpin,hosszu,time);
+                ciklushiba(2,AllapotLEDpin,hosszu,time);
+              break;
+        }
+
+
+    }
+
+}
+
+void ciklushiba(int loop, int led, int kozido, int waiting){
+
+  for (int i = 0; i <= loop; i++) {
+    delay(waiting);
+    digitalWrite(led, HIGH);
+    delay(kozido);
+    digitalWrite(led, LOW);
+    }
+
+}
+
 //#################################################################################################################################################################################################################################
 
 void loop()
 {
-  paratartalom= dht.readHumidity();
-  homersekletCelsius= dht.readTemperature();
-  levegominosegPpm = analogRead(0);
 
-  if (isnan(paratartalom) || isnan(homersekletCelsius)){
-    Serial.println("Sikertelen páratartalom és hőmérskéklet beolvasás, ellenőrizd a kábeleket!");
-    hibakod = 1;
-    //Állapot sikertelen jelzés
-    digitalWrite(AllapotLEDpin, HIGH);
-    delay(500); 
-    digitalWrite(AllapotLEDpin, LOW);
-    delay(500);
-    digitalWrite(AllapotLEDpin, HIGH);
-    delay(500); 
-    digitalWrite(AllapotLEDpin, LOW);
-  }else{
-    Serial.print("Páratartalom: ");
-    Serial.print(paratartalom);
-    Serial.print("%");
-    Serial.print("  ||  ");
-    Serial.print("Hőmérséklet: ");
-    Serial.print(homersekletCelsius);
-    Serial.print("°C");
-    Serial.print("  ||  ");
-    } 
+  server.handleClient(); // Handle client requests
+  Serial.println(WiFi.localIP());
 
-  if (levegominosegPpm <= 10){
-    Serial.println("Sikertelen levegőminőség beolvasás, ellenőrizd a kábeleket!");
-    hibakod = 2;
-    digitalWrite(AllapotLEDpin, HIGH);
-    delay(500); 
-    digitalWrite(AllapotLEDpin, LOW);
-    delay(500);
-    digitalWrite(AllapotLEDpin, HIGH);
-    delay(500); 
-    digitalWrite(AllapotLEDpin, LOW);
-  }else{
-    Serial.print("Levegőminőség: ");
-    Serial.print(levegominosegPpm, DEC);
-    Serial.print(" ppm");
+  if(datasend == HIGH){
+
+    paratartalom= dht.readHumidity();
+    homersekletCelsius= dht.readTemperature();
+    levegominosegPpm = analogRead(0);
+
+    if (isnan(paratartalom) || isnan(homersekletCelsius)){
+      Serial.println("Sikertelen páratartalom és hőmérskéklet beolvasás, ellenőrizd a kábeleket!");
+      hibakod = 1;
+    }else{
+      Serial.print("Páratartalom: ");
+      Serial.print(paratartalom);
+      Serial.print("%");
+      Serial.print("  ||  ");
+      Serial.print("Hőmérséklet: ");
+      Serial.print(homersekletCelsius);
+      Serial.print("°C");
+      Serial.print("  ||  ");
+    }
+
+    if (levegominosegPpm <= 10){
+      Serial.println("Sikertelen levegőminőség beolvasás, ellenőrizd a kábeleket!");
+      hibakod = 2;
+    }else{
+      Serial.print("Levegőminőség: ");
+      Serial.print(levegominosegPpm, DEC);
+      Serial.print(" ppm");
+      Serial.print("  ||  ");
+    }
+
+
+    Serial.print(WiFi.localIP().toString());
     Serial.print("  ||  ");
+    Serial.print("Hibakód: ");
+    Serial.println(hibakod);
+    //Adatküldés és annak a LED jelzése
+    adatKuldes(paratartalom, homersekletCelsius, levegominosegPpm, WiFi.localIP().toString(), hibakod);
+
+    delay(6000);
+
+    if(!isnan(paratartalom) || !isnan(homersekletCelsius) || !levegominosegPpm <= 10){
+
+      hibakod = 0;
+
+    }
+
+
+    hibakodok(hibakod);
+
+
+
+  }else{
+
+
+    digitalWrite(AdatLEDpin, LOW);
+    digitalWrite(AllapotLEDpin, LOW);
+    Serial.println("Data send off");
+    delay(9000);
+
   }
 
 
-  Serial.print(WiFi.localIP().toString());
-  Serial.print("  ||  ");
-  Serial.print("Hibakód: ");
-  Serial.println(hibakod);
-  //Adatküldés és annak a LED jelzése
-  adatKuldes(paratartalom, homersekletCelsius, levegominosegPpm, WiFi.localIP().toString(), hibakod);
-  digitalWrite(AdatLEDpin, HIGH);
 
-  delay(6000); 
 
-  digitalWrite(AdatLEDpin, LOW);
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use App\Models\Helyszin;
 
 
@@ -25,4 +26,25 @@ class fooldalController extends Controller
         return view('teremfelvetel');
 
     }
+
+    public function bekapcs(Request $request)
+    {
+        $ip = $request->input('eszkoz_ip');
+
+        Http::post('http://'.$ip.'/datasend');
+
+        return response()->json(['message' => 'bekacsolas toggled successfully']);
+
+    }
+
+    public function ledtest(Request $request)
+    {
+        $ip = $request->input('eszkoz_ip');
+
+        Http::post('http://'.$ip.'/ledtest');
+
+        return response()->json(['message' => 'bekacsolas toggled successfully']);
+
+    }
+
 }
