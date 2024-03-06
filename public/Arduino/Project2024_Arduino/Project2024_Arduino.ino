@@ -38,15 +38,10 @@ Például:
 #define ssid "Cisco3"
 #define password "Eotvos2024"
 */
-<<<<<<< HEAD
-#define ssid "Szűcs Home 2.4GHz"
-#define password "Dr.Bnha69Zen"
+#define ssid "Cisco4"
+#define password "Eotvos2024"
 
 ESP8266WebServer server(80); // Create a web server listening on port 80
-=======
-#define ssid "Cisco4"
-#define password "Eotvos2023"
->>>>>>> 1743da88f35263c82123d85d25131ffa3c580810
 
 DHT dht(DHTPIN,DHTTYPE);
 /*IPAddress subnet(255,255,0,0);
