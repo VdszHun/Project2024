@@ -34,7 +34,7 @@
 
   </div>
   <div class="col-sm-12 col-md-6 border border-secondary">
-    <h3 class="text-center">Főld szint</h3>
+    <h3 class="text-center">Földszint</h3>
 
     @foreach ($foldszint as $egyfoldszint)
     <div class="col-sm-12 col-md-3 my-3 mx-3" style="float: left; ">
