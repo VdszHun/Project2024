@@ -1,4 +1,3 @@
-
 /*
 Szükséges board, 2024. 03. 04-től  viszonyítva:
 
@@ -39,12 +38,19 @@ Például:
 #define password "Eotvos2024"
 */
 #define ssid "Cisco4"
-#define password "Eotvos2024"
+#define password "Eotvos2023"
 
 ESP8266WebServer server(80); // Create a web server listening on port 80
 
 DHT dht(DHTPIN,DHTTYPE);
-/*IPAddress subnet(255,255,0,0);
+
+/*
+Az alábbi rész olyan hálózatokra van ahol nem engedélyezett a dinamikus (DHCP) kapcsolódás, alapesetben ez kommentbe van téve, 
+viszont ha a hálózat manuális ki kell venni belőle és beírni az adott címeket a hálózatének megfelelően.
+*/
+
+/*
+IPAddress subnet(255,255,0,0);
 IPAddress gateway(192,168,1,95);
 IPAddress local_IP(192,168,12,2);
 IPAddress dns1(8,8,8,8);
@@ -89,23 +95,15 @@ void setup()
   Serial.begin(9600);
   dht.begin();
 
+/*
+Az alábbi rész olyan hálózatokra van ahol nem engedélyezett a dinamikus (DHCP) kapcsolódás, alapesetben ez kommentbe van téve, 
+viszont ha a hálózat manuális ki kell venni belőle.
+*/
+
   /*if(WiFi.config(local_IP,gateway,subnet,dns1,dns2)){
     Serial.println("Statikus IP konfigurálva");
-
-    //Állapot sikeres jelzés
-    digitalWrite(AllapotLEDpin, HIGH);
-    delay(500);
-    digitalWrite(AllapotLEDpin, LOW);
   }else{
     Serial.println("Statikus IP konfigurálása sikertelen!");
-    //Állapot sikertelen jelzés
-    digitalWrite(AllapotLEDpin, HIGH);
-    delay(500);
-    digitalWrite(AllapotLEDpin, LOW);
-    delay(500);
-    digitalWrite(AllapotLEDpin, HIGH);
-    delay(500);
-    digitalWrite(AllapotLEDpin, LOW);
   }*/
 
   WiFi.disconnect();
@@ -259,7 +257,7 @@ void ciklushiba(int loop, int led, int kozido, int waiting){
 void loop()
 {
 
-  server.handleClient(); // Handle client requests
+  server.handleClient(); // Kliens kérések kezelése
   Serial.println(WiFi.localIP());
 
   if(datasend == HIGH){

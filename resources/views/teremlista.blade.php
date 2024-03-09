@@ -10,7 +10,7 @@
 
 
     <div class="row col-md-7 m-4">
-        <table class="table table-primary table-stripped table-hover text-center table-bordered">
+        <table class="table table-primary table-stripped table-hover text-center align-middle table-bordered">
             <tr>
                 <th>Terem #ID</th>
                 <th>Teremszám</th>

@@ -6,6 +6,10 @@
     color:white
 }
 
+.eotvos_height {
+    min-height: 100vh;
+}
+
 .fooldal_link_no_deco{
     text-decoration: none;
 }

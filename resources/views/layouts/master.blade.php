@@ -21,7 +21,7 @@
      
     <div class="container-fluid">
         <div class="row">
-            <div class="col-2 vh-100 eotvos_leftmenu">
+            <div class="col-2 eotvos_height vh-100 eotvos_leftmenu">
                 <div  class="d-flex flex-column flex-shrink-0 p-3 text-dark eotvos_leftmenu" >
                     
                     <a href="{{route("fooldal")}}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
