@@ -31,7 +31,22 @@
 
         </div>
 
-        <div class="col-md-7 col-sm-12">
+        <div class="col-md-4 col-sm-12">
+
+            <div class="m-2 text-center bg-secondary rounded-start p-4 text-white">
+                <h6>Táblázat szín megjelenítések:</h6>
+
+                <div class="row">
+                    <div class="col-2 border border-dark">Nincs adatt mérés: <div class="bg-warning text-warning">--</div></div>
+                    <div class="col-2 border border-dark">Magas értékek: <div class="bg-danger text-danger">--</div></div>
+                    <div class="col-2 border border-dark"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3 col-sm-12">
 
             <div class="m-2 text-center eotvos_leftmenu rounded-start p-2">
 
