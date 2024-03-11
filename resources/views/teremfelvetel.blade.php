@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', "Teremhozzáadás")
+@section('title', "Teremfelvétel")
 @section('content')
 
 <form method="POST"  enctype="multipart/form-data">
@@ -12,7 +12,7 @@
     </div>
 
     <fieldset class="scheduler-border mb-4">
-        <legend class="scheduler-border">Kérem adja meg az adatokat a terem hozzáadáshoz</legend>
+        <legend class="scheduler-border">Kérem adja meg az adatokat a terem felvételéhez</legend>
 
         <label for="teremszam" class="mt-3">Terem száma: </label><br>
         <input type="number" name="teremszam" id="teremszam" min="0" max="400" value="{{old('teremszam')}}" required> <br>

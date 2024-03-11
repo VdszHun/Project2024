@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col-md-4 col-sm-12">
 
-            <img src="{{asset('storage/teremkepek/'.$fusterzekelo->terem_szam.'.jpg')}}" alt="terem terv rajz" title="terem terv rajz" srcset="" class="img img-fluid rounded mb-4 ">
+            <img src="{{asset('storage/teremkepek/'.$fusterzekelo->terem_szam.'.jpg')}}" alt="terem tervrajz" title="terem tervrajz" srcset="" class="img img-fluid rounded mb-4 ">
 
         </div>
 
@@ -34,12 +34,12 @@
         <div class="col-md-4 col-sm-12">
 
             <div class="m-2 text-center bg-secondary rounded-start p-4 text-white">
-                <h6>Táblázat szín megjelenítések:</h6>
+                <h6>Táblázat színjelentések:</h6>
 
-                <div class="row">
-                    <div class="col-2 border border-dark">Hibás adatt mérés: <div class="bg-warning text-warning my-2">--</div></div>
-                    <div class="col-2 border border-dark">Magas értékek: <div class="bg-danger text-danger my-2">--</div></div>
-                    <div class="col-2 border border-dark">A határon belüli: <div class="bg-success text-success my-2">--</div></div>
+                <div class="row justify-content-center">
+                    <div class="col-3 border border-dark">Hibás adatmérés: <div class="bg-warning text-warning my-2">--</div></div>
+                    <div class="col-3 border border-dark">Magas érték: <div class="bg-danger text-danger my-2">--</div></div>
+                    <div class="col-3 border border-dark">Határon belüli: <div class="bg-success text-success my-2">--</div></div>
                 </div>
 
             </div>
@@ -50,13 +50,13 @@
 
             <div class="m-2 text-center eotvos_leftmenu rounded-start p-2">
 
-                <h6>Legutóbbi riaszás:</h6>
+                <h6>Legutóbbi riasztás:</h6>
 
                     <div class="row bg-secondary m-2">
                         <div class="col-6">
                             <div>
 
-                                Hömérséklet:
+                                Hőmérséklet:
                                
                                 @foreach ($fusterzekelodata_riaszt1 as $egy)
                                     {{$egy->homerseklet}}
@@ -104,7 +104,7 @@
     <div class="row">
         <div class="col-12">
 
-            <h4>A/az {{$fusterzekelo->terem_descript}} {{$fusterzekelo->terem_szam}} füstérzékelő adatai</h4>
+            <h4>A/az {{$fusterzekelo->terem_descript}} {{$fusterzekelo->terem_szam}} füstérzékelőjének adatai</h4>
             <div class="table-responsive">
                 <table class="table table-dark table-stripped table-hover text-center">
                     <tr>
