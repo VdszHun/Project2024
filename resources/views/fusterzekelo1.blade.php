@@ -3,7 +3,7 @@
 @section('content')
 
 <div>
-    <h1>Füstérzékelő #(terem száma)</h1>
+    <h1>Terem (terem száma)</h1>
 
 
     <img src="{{asset('IMGS/terem_alks_048.jpg')}}" alt="" srcset="">

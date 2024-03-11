@@ -24,11 +24,13 @@ class MeresSeeder extends Seeder
             ]);
         }   
 
-        /*-h_id
+        /*
+        -h_id
         -ppm
         -homerseklet
         -paratartalom
         -hibakod
-        -meres_ideje*/
+        -meres_ideje
+        */
     }
 }

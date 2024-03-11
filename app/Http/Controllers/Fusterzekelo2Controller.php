@@ -35,11 +35,11 @@ class Fusterzekelo2Controller extends Controller
                 "hibakod" => "required"
             ],
             [
-                "eszköz_ip.required" => "Hianyzo eszkoz ip!",
-                "ppm.required" => "Hiányzó ppm ertek!",
-                "homerseklet.required" => "Hiányzó homerseklet ertek!",
-                "paratartalom.required" => "Hiányzó paratartalom ertek!",
-                "hibakod.required" => "Hiányzó hibakod!"
+                "eszköz_ip.required" => "Hiányzó eszköz IP!",
+                "ppm.required" => "Hiányzó légminőség!",
+                "homerseklet.required" => "Hiányzó hőmérséklet!",
+                "paratartalom.required" => "Hiányzó páratartalom!",
+                "hibakod.required" => "Hiányzó hibakód!"
             ]
         );
 

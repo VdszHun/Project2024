@@ -11,12 +11,12 @@ class teremFeltoltesController extends Controller
         $req->validate(
 
             [
-                'fajl' => "required|mimes:png,jpg|max:100"
+                'fajl' => "required|mimes:jpg|max:100"
             ],
             [
-                'fajl.required' => "kötelező a fált megadni",
-                'fajl.mimes' => "Csak png,jpg típus lehet",
-                'fajl.max' => "Max 100 kb lehet"
+                'fajl.required' => "Kötelező fájlt feltölteni!",
+                'fajl.mimes' => "Feltöntendő fájl csak .jpg fájlformátum lehet!",
+                'fajl.max' => "A fájl maximum mérete 100 kB lehet!"
             ]
 
         );

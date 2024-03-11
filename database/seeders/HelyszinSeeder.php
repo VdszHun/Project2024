@@ -42,16 +42,18 @@ class HelyszinSeeder extends Seeder
         $hasznaltIPcim = [];
         $egyediIPcim = egyediIPcimgeneralas($hasznaltIPcim);     
             Helyszin::create([
-                "terem_szint" => random_int(0,4),
+                "terem_szint" => random_int(0,3),
                 "terem_szam" => random_int(001,350),
                 "terem_descript" => $randomTerem,
                 "eszköz_ip" => $egyediIPcim
             ]);
         }
 
-        /*-terem_szint
-          -terem_szam
-          -terem_descript
-          -eszköz_ip*/
+        /*
+        -terem_szint
+        -terem_szam
+        -terem_descript
+        -eszköz_ip
+        */
     }
 }

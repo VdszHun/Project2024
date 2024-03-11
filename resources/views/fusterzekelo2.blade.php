@@ -1,12 +1,12 @@
 @extends('layouts.master')
-@section('title', "Főoldal")
+@section('title', $fusterzekelo->terem_descript.' '.$fusterzekelo->terem_szam)
 @section('content')
 
 <div>
 
     <div class="container-fluid mb-4 eotvos_leftmenu">
 
-        <h1 class="text-center">Füstérzékelő #({{$fusterzekelo->terem_szam}})</h1>
+        <h1 class="text-center">{{$fusterzekelo->terem_descript}} {{$fusterzekelo->terem_szam}}</h1>
 
     </div>
 
@@ -93,7 +93,7 @@
     <div class="row">
         <div class="col-12">
 
-            <h4>Az érzékelő adatai</h4>
+            <h4>A/az {{$fusterzekelo->terem_descript}} {{$fusterzekelo->terem_szam}} füstérzékelő adatai</h4>
             <div class="table-responsive">
                 <table class="table table-primary table-stripped table-hover text-center">
                     <tr>

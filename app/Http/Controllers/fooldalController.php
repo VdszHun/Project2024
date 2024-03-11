@@ -33,7 +33,7 @@ class fooldalController extends Controller
 
         Http::post('http://'.$ip.'/datasend');
 
-        return response()->json(['message' => 'bekacsolas toggled successfully']);
+        return response()->json(['message' => 'Wemos kapcsolás sikeresen végrehajtva!']);
 
     }
 
@@ -43,7 +43,7 @@ class fooldalController extends Controller
 
         Http::post('http://'.$ip.'/ledtest');
 
-        return response()->json(['message' => 'bekacsolas toggled successfully']);
+        return response()->json(['message' => 'LED bekapcsolás sikeresen végrehajtva!']);
 
     }
 

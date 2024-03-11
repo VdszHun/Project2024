@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', "Terem hozzá adás")
+@section('title', "Teremhozzáadás")
 @section('content')
 
 <form method="POST" action="" enctype="multipart/form-data">
@@ -7,7 +7,7 @@
 
     <div class="container-fluid mb-4 eotvos_leftmenu">
 
-        <h1 class="text-center">Terem felvétel</h1>
+        <h1 class="text-center">Teremfelvétel</h1>
 
     </div>
 
