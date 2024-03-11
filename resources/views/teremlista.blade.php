@@ -4,7 +4,7 @@
 
 <div class="container-fluid mb-4 eotvos_leftmenu">
 
-    <h1 class="text-center">Termek módosítása / törlése</h1>
+    <h1 class="text-center">Teremlista</h1>
 
 </div>
 

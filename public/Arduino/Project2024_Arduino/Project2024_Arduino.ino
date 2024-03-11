@@ -37,15 +37,14 @@ Például:
 #define ssid "Cisco3"
 #define password "Eotvos2024"
 */
-#define ssid "Cisco4"
-#define password "Eotvos2023"
-
+#define ssid "Szűcs Home 2.4GHz"
+#define password "Dr.Bnha69Zen"
 ESP8266WebServer server(80); // Create a web server listening on port 80
 
 DHT dht(DHTPIN,DHTTYPE);
 
 /*
-Az alábbi rész olyan hálózatokra van ahol nem engedélyezett a dinamikus (DHCP) kapcsolódás, alapesetben ez kommentbe van téve, 
+Az alábbi rész olyan hálózatokra van ahol nem engedélyezett a dinamikus (DHCP) kapcsolódás, alapesetben ez kommentbe van téve,
 viszont ha a hálózat manuális ki kell venni belőle és beírni az adott címeket a hálózatének megfelelően.
 */
 
@@ -96,7 +95,7 @@ void setup()
   dht.begin();
 
 /*
-Az alábbi rész olyan hálózatokra van ahol nem engedélyezett a dinamikus (DHCP) kapcsolódás, alapesetben ez kommentbe van téve, 
+Az alábbi rész olyan hálózatokra van ahol nem engedélyezett a dinamikus (DHCP) kapcsolódás, alapesetben ez kommentbe van téve,
 viszont ha a hálózat manuális ki kell venni belőle.
 */
 
@@ -268,6 +267,8 @@ void loop()
 
     if (isnan(paratartalom) || isnan(homersekletCelsius)){
       Serial.println("Sikertelen páratartalom és hőmérskéklet beolvasás, ellenőrizd a kábeleket!");
+      paratartalom =-99;
+      homersekletCelsius =-99;
       hibakod = 1;
     }else{
       Serial.print("Páratartalom: ");
@@ -282,6 +283,7 @@ void loop()
 
     if (levegominosegPpm <= 10){
       Serial.println("Sikertelen levegőminőség beolvasás, ellenőrizd a kábeleket!");
+      levegominosegPpm = -99;
       hibakod = 2;
     }else{
       Serial.print("Levegőminőség: ");
@@ -300,6 +302,8 @@ void loop()
 
     delay(6000);
 
+        hibakodok(hibakod);
+
     if(!isnan(paratartalom) || !isnan(homersekletCelsius) || !levegominosegPpm <= 10){
 
       hibakod = 0;
@@ -307,7 +311,7 @@ void loop()
     }
 
 
-    hibakodok(hibakod);
+
 
 
 

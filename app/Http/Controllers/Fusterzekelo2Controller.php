@@ -13,7 +13,7 @@ class Fusterzekelo2Controller extends Controller
 {
     public function index($hid){
         //$fusterzekelo2 = Helyszin::orderBy('h_id', 'DESC')->paginate(9);
-        
+
         //a táblázatban megjelenő értékek a nagyon magas számokra, ezek szine píros lesz az érzékelő adatai közőtt.
         $maxppm = 500;
         $maxhofok = 45;

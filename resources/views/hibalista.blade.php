@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', "Teremlista")
+@section('title', "Hibakódok")
 @section('content')
 
 <div class="container-fluid mb-4 eotvos_leftmenu">
@@ -12,13 +12,13 @@
     <div class="row col-md-7 m-4">
         <table class="table table-primary table-stripped table-hover text-center align-middle table-bordered">
             <tr>
-                <th>#m_id</th>
+                <th>Mérés ID</th>
                 <th>Teremszám</th>
                 <th>Teremszint</th>
                 <th>Eszköz IP</th>
                 <th>Hiba ideje</th>
-                <th>Hiba</th>
-                <th>Hiba kód</th>
+                <th>Hiba leírása</th>
+                <th>Hibakód</th>
 
             </tr>
 
