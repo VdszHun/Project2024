@@ -43,7 +43,7 @@ class fooldalController extends Controller
 
         Http::post('http://'.$ip.'/ledtest');
 
-        return response()->json(['message' => 'LED bekapcsolás sikeresen végrehajtva!']);
+        return response()->json(['message' => 'LED kapcsolás sikeresen végrehajtva!']);
 
     }
 

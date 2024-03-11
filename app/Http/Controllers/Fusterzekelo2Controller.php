@@ -13,11 +13,21 @@ class Fusterzekelo2Controller extends Controller
 {
     public function index($hid){
         //$fusterzekelo2 = Helyszin::orderBy('h_id', 'DESC')->paginate(9);
+        
+        //a táblázatban megjelenő értékek a nagyon magas számokra, ezek szine píros lesz az érzékelő adatai közőtt.
+        $maxppm = 500;
+        $maxhofok = 45;
+        $maxsnedvesseg = 75;
+        $maxszarazsag = 5;
 
         $fusterzekelo = Helyszin::find($hid);
         $fusterzekelodata = Meres::where('h_id',$hid)->orderBy('m_id', 'DESC')->paginate(9);
+        $fusterzekelodata_riaszt1 = Meres::where('h_id',$hid)->where('homerseklet','>' ,$maxhofok)->orderBy('meres_ideje', 'DESC')->limit(1)->get();
+        $fusterzekelodata_riaszt2 = Meres::where('h_id',$hid)->where('paratartalom','<' ,$maxsnedvesseg)->where('paratartalom','<' ,$maxszarazsag)->orderBy('meres_ideje', 'DESC')->limit(1)->get();
+
+
         if($fusterzekelo){
-            return view('fusterzekelo2',['fusterzekelo' => $fusterzekelo, 'fusterzekelodata' => $fusterzekelodata]);
+            return view('fusterzekelo2',['fusterzekelo' => $fusterzekelo, 'fusterzekelodata' => $fusterzekelodata, 'fusterzekelodata_riaszt1' => $fusterzekelodata_riaszt1,'fusterzekelodata_riaszt2' => $fusterzekelodata_riaszt2 , 'maxppm' => $maxppm, 'maxhofok' => $maxhofok,'maxsnedvesseg' => $maxsnedvesseg , 'maxszarazsag' => $maxszarazsag]);
         }
         return redirect()->route('fooldal');
         #

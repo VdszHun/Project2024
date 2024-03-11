@@ -35,7 +35,7 @@ class HelyszinSeeder extends Seeder
     
     public function run(): void
     {
-        $teremTipus = ['Férfi mosdó', 'Női mosdó', 'Tanári', 'Tesi tanári', 'Tanterem', 'Szertár', 'Könyvtár', 'Labor', 'Műhely', 'Egyéb helyiség'];
+        $teremTipus = ['Férfi mosdó', 'Női mosdó', 'Tanári', 'Tesi tanári', 'Tanterem', 'Szertár', 'Könyvtár', 'Labor', 'Műhely', 'Előadó', 'Egyéb helyiség'];
         for ($i = 0; $i < 4; $i++){
         $randomteremIndex = array_rand($teremTipus);
         $randomTerem = $teremTipus[$randomteremIndex];

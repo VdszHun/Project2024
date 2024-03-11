@@ -37,9 +37,9 @@
                 <h6>Táblázat szín megjelenítések:</h6>
 
                 <div class="row">
-                    <div class="col-2 border border-dark">Nincs adatt mérés: <div class="bg-warning text-warning">--</div></div>
-                    <div class="col-2 border border-dark">Magas értékek: <div class="bg-danger text-danger">--</div></div>
-                    <div class="col-2 border border-dark"></div>
+                    <div class="col-2 border border-dark">Hibás adatt mérés: <div class="bg-warning text-warning my-2">--</div></div>
+                    <div class="col-2 border border-dark">Magas értékek: <div class="bg-danger text-danger my-2">--</div></div>
+                    <div class="col-2 border border-dark">A határon belüli: <div class="bg-success text-success my-2">--</div></div>
                 </div>
 
             </div>
@@ -53,17 +53,28 @@
                 <h6>Legutóbbi riaszás:</h6>
 
                     <div class="row bg-secondary m-2">
-                        <div class="col-md-4">
+                        <div class="col-6">
+                            <div>
+
+                                Hömérséklet:
+                               
+                                @foreach ($fusterzekelodata_riaszt1 as $egy)
+                                    {{$egy->homerseklet}}
+                                @endforeach
+                                <br>
+
+                                Páratartalom:
+
+                                @foreach ($fusterzekelodata_riaszt2 as $egy)
+                                    {{$egy->paratartalom}}
+                                @endforeach
+                            
+                            </div>
+                            
+                        </div>
+                        <div class="col-6">
                             Dátum és idő: <br>
                             2024-02-26 14:54:51
-                        </div>
-                        <div class="col-md-4">
-                            Terem: <br>
-                            350
-                        </div>
-                        <div class="col-md-4">
-                            Eszköz: <br>
-                            192.168.82.4
                         </div>
                     </div>
 
@@ -95,20 +106,59 @@
 
             <h4>A/az {{$fusterzekelo->terem_descript}} {{$fusterzekelo->terem_szam}} füstérzékelő adatai</h4>
             <div class="table-responsive">
-                <table class="table table-primary table-stripped table-hover text-center">
+                <table class="table table-dark table-stripped table-hover text-center">
                     <tr>
-                        <th>Légminőség</th>
-                        <th>Hőmérséklet</th>
-                        <th>Páratartalom</th>
-                        <th>Mérés ideje</th>
+                        <th class="text-white bg-dark">Légminőség </th>
+                        <th class="text-white bg-dark">Hőmérséklet</th>
+                        <th class="text-white bg-dark">Páratartalom</th>
+                        <th class="text-white bg-dark">Mérés ideje</th>
                     </tr>
                     @foreach ($fusterzekelodata as $egymeres)
+                    
+
+                    
+
                     <tr>
-                        <td>{{$egymeres->ppm}} ppm</td>
-                        <td>{{$egymeres->homerseklet}} &deg;C</td>
-                        <td>{{$egymeres->paratartalom}}%</td>
-                        <td>{{$egymeres->meres_ideje}}</td>
+                        
+                        @if ($egymeres->hibakod > 1 && $egymeres->ppm == -99)
+                            <td class="bg-warning text-dark">Hiba</td>
+                        @elseif($egymeres->ppm > $maxppm)
+                            <td class="bg-danger">{{$egymeres->ppm}} ppm</td>
+                        @else
+                            <td class="bg-success">{{$egymeres->ppm}} ppm</td>
+                        @endif
+
+
+                        @if ($egymeres->hibakod > 0 && $egymeres->homerseklet == -99)
+                            <td class="bg-warning text-dark">Hiba</td>
+                        @elseif($egymeres->homerseklet > $maxhofok)
+                            <td class="bg-danger">{{$egymeres->homerseklet}} &deg;C</td>
+                        @else
+                            <td class="bg-success">{{$egymeres->homerseklet}} &deg;C</td>
+                        @endif
+
+                        @if ($egymeres->hibakod > 0 && $egymeres->paratartalom == -99)
+                            <td class="bg-warning text-dark">Hiba</td>
+                        @elseif($egymeres->paratartalom > $maxsnedvesseg)
+                            <td class="bg-danger">{{$egymeres->paratartalom}}%</td>
+                        @else
+
+                            @if ($egymeres->paratartalom < $maxszarazsag)
+                                <td class="bg-info">{{$egymeres->paratartalom}}%</td>
+                            @else
+                                <td class="bg-success">{{$egymeres->paratartalom}}%</td>
+                            @endif
+
+
+                        @endif
+
+  
+                        <td class="bg-primary">{{$egymeres->meres_ideje}}</td>
                     </tr>
+
+                                    
+                    
+
                     @endforeach
 
                 </table>

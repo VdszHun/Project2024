@@ -19,7 +19,7 @@ class MeresSeeder extends Seeder
                 "ppm" => random_int(100,1000),
                 "homerseklet" => random_int(15,30),
                 "paratartalom" => random_int(20,90),
-                "hibakod" => random_int(0,4),
+                "hibakod" => random_int(0,2),
                 "meres_ideje" => date("Y-m-d H:i:s")
             ]);
         }   
