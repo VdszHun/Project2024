@@ -39,6 +39,7 @@
                 <div class="row justify-content-center">
                     <div class="col-3 border border-dark">Hibás adatmérés: <div class="bg-warning text-warning my-2">--</div></div>
                     <div class="col-3 border border-dark">Magas érték: <div class="bg-danger text-danger my-2">--</div></div>
+                    <div class="col-3 border border-dark">Alacson érték: <div class="bg-info text-info my-2">--</div></div>
                     <div class="col-3 border border-dark">Határon belüli: <div class="bg-success text-success my-2">--</div></div>
                 </div>
 
@@ -57,7 +58,7 @@
                             <div>
 
                                 Hőmérséklet:
-                               
+
                                 @foreach ($fusterzekelodata_riaszt1 as $egy)
                                     {{$egy->homerseklet}}
                                 @endforeach
@@ -68,9 +69,9 @@
                                 @foreach ($fusterzekelodata_riaszt2 as $egy)
                                     {{$egy->paratartalom}}
                                 @endforeach
-                            
+
                             </div>
-                            
+
                         </div>
                         <div class="col-6">
                             Dátum és idő: <br>
@@ -114,12 +115,12 @@
                         <th class="text-white bg-dark">Mérés ideje</th>
                     </tr>
                     @foreach ($fusterzekelodata as $egymeres)
-                    
 
-                    
+
+
 
                     <tr>
-                        
+
                         @if ($egymeres->hibakod > 1 && $egymeres->ppm == -99)
                             <td class="bg-warning text-dark">Hiba</td>
                         @elseif($egymeres->ppm > $maxppm)
@@ -152,12 +153,12 @@
 
                         @endif
 
-  
+
                         <td class="bg-primary">{{$egymeres->meres_ideje}}</td>
                     </tr>
 
-                                    
-                    
+
+
 
                     @endforeach
 

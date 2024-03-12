@@ -15,11 +15,13 @@ class TeremlistaController extends Controller
 
     }
 
-    public function torles(Reuest $req){
-        $terem=Helyszin::find($req->input('h_id'));
-        $terem->delete();
-        $terem['error'] = false;
-        return response()->json($terem);
+    public function torles(Request $req){
+        $terem = Helyszin::find($req->input('h_id'));
+        if (!$terem) {
+            return response()->json(['error' => true, 'message' => 'A terem nem található'], 404);
+        }
 
+        $terem->delete();
+        return response()->json(['error' => false, 'message' => 'A terem sikeresen törölve lett'], 200);
     }
 }

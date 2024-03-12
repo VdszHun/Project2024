@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta http-equiv="refresh" content="6">
+    <!--<meta http-equiv="refresh" content="6"> -->
     <title>@yield('title')</title>
 
     <!-- Latest compiled and minified CSS -->
@@ -14,17 +14,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="{{ asset('CSS/style.css') }}">
-    
+
 </head>
 <body class="eotvos_bg">
 
     @csrf
-     
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-2 eotvos_height vh-100 eotvos_leftmenu">
                 <div  class="d-flex flex-column flex-shrink-0 p-3 text-dark eotvos_leftmenu" >
-                    
+
                     <a href="{{route("fooldal")}}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
 
                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" fill="currentColor" class="bi bi-cpu me-3" viewBox="0 0 16 16">
@@ -34,7 +34,7 @@
                     </a>
                     <hr>
                     <ul class="nav nav-pills flex-column mb-auto ">
-                    
+
                     <li class="nav-item">
                         <a href="{{route('fooldal')}}" class="nav-link text-white {{ request()->routeIs('fooldal') ? 'active' : '' }}" aria-current="page">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-house me-2" viewBox="0 0 16 16">
@@ -78,8 +78,8 @@
 
                     </li>
 
-                    
-                    
+
+
                     </ul>
                 </div>
             </div>
