@@ -42,6 +42,7 @@ class teremFeltoltesController extends Controller
             $teremfelvetel->save();
 
             return response()->json($teremfelvetel, 201);
+            return redirect()->route('/teremfelvetel');
         }
     }
 }

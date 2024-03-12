@@ -17,7 +17,7 @@
             <div class="row justify-content-center">
                 <div class="col-3 border border-dark">Hibás adatmérés: <div class="bg-warning text-warning my-2">--</div></div>
                 <div class="col-3 border border-dark">Riasztási érték: <div class="bg-danger text-danger my-2">--</div></div>
-                <div class="col-3 border border-dark">Alacson érték: <div class="bg-info text-info my-2">--</div></div>
+                <div class="col-3 border border-dark">Alacsony érték: <div class="bg-info text-info my-2">--</div></div>
             </div>
 
         </div>
@@ -29,7 +29,7 @@
             <table class="table table-secondary">
                 <tr>
                     <th>Terem száma</th>
-                    <th>Eszköz ip</th>
+                    <th>Eszköz IP</th>
                     <th>Terem szintje</th>
                     <th>Mérés Ideje</th>
                 </tr>

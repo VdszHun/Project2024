@@ -39,7 +39,7 @@
                 <div class="row justify-content-center">
                     <div class="col-3 border border-dark">Hibás adatmérés: <div class="bg-warning text-warning my-2">--</div></div>
                     <div class="col-3 border border-dark">Magas érték: <div class="bg-danger text-danger my-2">--</div></div>
-                    <div class="col-3 border border-dark">Alacson érték: <div class="bg-info text-info my-2">--</div></div>
+                    <div class="col-3 border border-dark">Alacsony érték: <div class="bg-info text-info my-2">--</div></div>
                     <div class="col-3 border border-dark">Határon belüli: <div class="bg-success text-success my-2">--</div></div>
                 </div>
 
@@ -105,7 +105,7 @@
     <div class="row">
         <div class="col-12">
 
-            <h4>A/az {{$fusterzekelo->terem_descript}} {{$fusterzekelo->terem_szam}} füstérzékelőjének adatai</h4>
+            <h4>A/Az {{$fusterzekelo->terem_descript}} {{$fusterzekelo->terem_szam}} füstérzékelőjének adatai</h4>
             <div class="table-responsive">
                 <table class="table table-dark table-stripped table-hover text-center">
                     <tr>
