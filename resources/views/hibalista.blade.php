@@ -24,29 +24,33 @@
 
             @foreach ($hibak as $hiba)
 
+                @if ($hiba->meresek->hibakod > 0)
+
                 <tr>
-                    <td>{{$hiba->m_id}}</td>
+                    <td>{{$hiba->meresek->m_id}}</td>
                     <td>{{$hiba->terem_szam}}</td>
                     <td>{{$hiba->terem_szint}}</td>
                     <td>{{$hiba->eszköz_ip}}</td>
-                    <td>{{$hiba->meres_ideje}}</td>
-                    
+                    <td>{{$hiba->meresek->meres_ideje}}</td>
+
                         @if ($hiba->hibakod == 1)
                             <td class="bg-info">Sikertelen páratartalom és hőmérskéklet beolvasás, ellenőrizd a kábeleket!</td>
                         @else
                             <td class="bg-white">Sikertelen levegőminőség beolvasás, ellenőrizd a kábeleket! </td>
                         @endif
 
-                    
+
                     <td>{{$hiba->hibakod}}</td>
 
                 </tr>
-            
+
+                @endif
+
             @endforeach
 
 
 
         </table>
     </div>
-    
+
 @endsection

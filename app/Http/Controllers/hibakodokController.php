@@ -9,7 +9,7 @@ class hibakodokController extends Controller
 {
     public function index(){
 
-        $hibak = Helyszin::where('hibakod','>','0')->orderBy('meres_ideje', 'DESC')->get();
+        $hibak = Helyszin::all();
         return view('hibalista',['hibak' => $hibak]);
 
     }
