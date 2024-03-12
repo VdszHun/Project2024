@@ -8,6 +8,43 @@
 
 </div>
 
+<div class="row">
+
+    <div class="col-md-6 col-sm-12">
+        <div class="m-2 text-center bg-secondary rounded-start p-4 text-white">
+            <h6>Táblázat színjelentések:</h6>
+
+            <div class="row justify-content-center">
+                <div class="col-3 border border-dark">Hibás adatmérés: <div class="bg-warning text-warning my-2">--</div></div>
+                <div class="col-3 border border-dark">Riasztási érték: <div class="bg-danger text-danger my-2">--</div></div>
+                <div class="col-3 border border-dark">Alacson érték: <div class="bg-info text-info my-2">--</div></div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-6 col-sm-12 table-responsive text-center">
+        <div class="eotvos_leftmenu p-4">
+            <h5>Legutóbbi riasztás</h4>
+            <table class="table table-secondary">
+                <tr>
+                    <th>Terem száma</th>
+                    <th>Eszköz ip</th>
+                    <th>Terem szintje</th>
+                    <th>Mérés Ideje</th>
+                </tr>
+                <tr>
+                    <td>282</td>
+                    <td>192.84.0.210</td>
+                    <td>0</td>
+                    <td>2024-02-26 14:54:51</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+</div>
 
 
 <div class="row border border-secondary  text-white bg-dark">
