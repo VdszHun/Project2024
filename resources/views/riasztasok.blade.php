@@ -15,23 +15,40 @@
                 <th>Terem száma</th>
                 <th>Terem szint</th>
                 <th>Eszkőz Ip</th>
+                <th>Riazstás észlelése</th>
                 <th>Riasztás ideje</th>
 
             </tr>
 
         @foreach ($riasztasok as $riasztas)
-                <tr>
-                    <dt>{{$riasztas->meres()->first()->terem_szam}}</dt>
-                    <dt>{{$riasztas->meres()->first()->terem_szint}}</dt>
-                    <dt>{{$riasztas->meres()->first()->eszkoz_ip}}</dt>
-                    <dt>{{$riasztas->meres()->first()->meres_ideje}}</dt>
+
+
+        @if ($riasztas->homerseklet > $maxhofok)
+            <tr>
+                    <dt>{{$riasztas->helyszinek()->first()->terem_szam}}</dt>
+                    <dt>{{$riasztas->helyszinek()->first()->terem_szint}}</dt>
+                    <dt>{{$riasztas->helyszinek()->first()->eszkoz_ip}}</dt>
+                    <dt>Magas hömérséklet
+
+
+
+                    </dt>
+                    <dt>{{$riasztas->meres_ideje}}</dt>
                 </tr>
+
+
+            @elseif ($riasztas->ppm > $maxppm)
+            @endif
 
         @endforeach
 
 
 
         </table>
+
+
+
+        {{$riasztasok->links()}}
     </div>
 
 @endsection

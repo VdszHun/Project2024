@@ -38,11 +38,10 @@ class Fusterzekelo2Controller extends Controller
 
         $maxppm = 500;
         $maxhofok = 45;
-        $maxsnedvesseg = 75;
         $maxszarazsag = 5;
 
-        $riasztasok = Meres::where('homerseklet','>' ,$maxhofok)->orderBy('meres_ideje', 'DESC')->get();
-        return view('riasztasok', ['riasztasok' => $riasztasok]);
+        $riasztasok = Meres::orderBy('meres_ideje', 'DESC')->paginate(10);
+        return view('riasztasok', ['riasztasok' => $riasztasok, 'maxppm' => $maxppm, 'maxhofok' => $maxhofok, 'maxszarazsag' => $maxszarazsag]);
 
     }
 
