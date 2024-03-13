@@ -20,15 +20,15 @@
             </tr>
 
         @foreach ($riasztasok as $riasztas)
-            @if ($riasztas->meres)
                 <tr>
-                    <dt>{{$riasztas->meres->terem_szam}}</dt>
-                    <dt>{{$riasztas->meres->terem_szint}}</dt>
-                    <dt>{{$riasztas->meres->eszkoz_ip}}</dt>
-                    <dt>{{$riasztas->meres->meres_ideje}}</dt>
+                    <dt>{{$riasztas->meres()->first()->terem_szam}}</dt>
+                    <dt>{{$riasztas->meres()->first()->terem_szint}}</dt>
+                    <dt>{{$riasztas->meres()->first()->eszkoz_ip}}</dt>
+                    <dt>{{$riasztas->meres()->first()->meres_ideje}}</dt>
                 </tr>
-            @endif
+
         @endforeach
+
 
 
         </table>

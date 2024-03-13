@@ -48,6 +48,9 @@
 
 
         </table>
+
+        {{$hibak->links()}}
+
     </div>
 
 @endsection
