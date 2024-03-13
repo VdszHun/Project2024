@@ -24,8 +24,6 @@
 
             @foreach ($hibak as $hiba)
 
-                @if ($hiba->hibakod > 0)
-
                 <tr>
                     <td>{{$hiba->m_id}}</td>
                     <td>{{$hiba->helyszinek->terem_szam}}</td>
@@ -44,7 +42,6 @@
 
                 </tr>
 
-                @endif
 
             @endforeach
 

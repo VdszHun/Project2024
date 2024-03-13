@@ -10,7 +10,7 @@ class hibakodokController extends Controller
 {
     public function index(){
 
-        $hibak = Meres::all();
+        $hibak = Meres::where('hibakod', '>', '0')->get();
         return view('hibalista',['hibak' => $hibak]);
 
     }
