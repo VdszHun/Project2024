@@ -26,9 +26,9 @@
 
                 <tr>
                     <td>{{$hiba->m_id}}</td>
-                    <td>{{$hiba->helyszinek->terem_szam}}</td>
-                    <td>{{$hiba->helyszinek->terem_szint}}</td>
-                    <td>{{$hiba->helyszinek->eszköz_ip}}</td>
+                    <td>{{$hiba->helyszinek()->first()->terem_szam}}</td>
+                    <td>{{$hiba->helyszinek()->first()->terem_szint}}</td>
+                    <td>{{$hiba->helyszinek()->first()->eszköz_ip}}</td>
                     <td>{{$hiba->meres_ideje}}</td>
 
                         @if ($hiba->hibakod == 1)
