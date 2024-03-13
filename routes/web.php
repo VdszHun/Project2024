@@ -18,7 +18,11 @@ Route::get('/teremfelvetel',[fooldalController::class,'felveteindex'])->name('te
 
 Route::post('/sensorbekapcs',[fooldalController::class,'bekapcs']);
 Route::post('/sensortest',[fooldalController::class,'ledtest']);
-Route::post('/teremfelvetel', [teremFeltoltesController::class, 'upload']);
+
 Route::get('/teremlista', [TeremlistaController::class, 'index'])->name('teremlista');
+Route::post('/teremfelvetel', [teremFeltoltesController::class, 'upload']);
 Route::post('/teremtorles',[TeremlistaController::class, 'torles']);
 Route::get('/hibalista', [hibakodokController::class, 'index'])->name('hibakodok');
+
+Route::get('/riasztasok', [Fusterzekelo2Controller::class, 'riasztas_index'])->name('riasztas');
+

@@ -29,8 +29,21 @@ class Fusterzekelo2Controller extends Controller
         if($fusterzekelo){
             return view('fusterzekelo2',['fusterzekelo' => $fusterzekelo, 'fusterzekelodata' => $fusterzekelodata, 'fusterzekelodata_riaszt1' => $fusterzekelodata_riaszt1,'fusterzekelodata_riaszt2' => $fusterzekelodata_riaszt2 , 'maxppm' => $maxppm, 'maxhofok' => $maxhofok,'maxsnedvesseg' => $maxsnedvesseg , 'maxszarazsag' => $maxszarazsag]);
         }
-        return redirect()->route('fooldal');
+        return redirect()->route('teremplus');
         #
+    }
+
+
+    public function riasztas_index(){
+
+        $maxppm = 500;
+        $maxhofok = 45;
+        $maxsnedvesseg = 75;
+        $maxszarazsag = 5;
+
+        $riasztasok = Meres::where('homerseklet','>' ,$maxhofok)->orderBy('meres_ideje', 'DESC')->get();
+        return view('riasztasok', ['riasztasok' => $riasztasok]);
+
     }
 
     //API

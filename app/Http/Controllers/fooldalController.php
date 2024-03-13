@@ -21,6 +21,8 @@ class fooldalController extends Controller
 
     }
 
+
+
     public function felveteindex(){
 
         return view('teremfelvetel');

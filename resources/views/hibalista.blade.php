@@ -24,14 +24,14 @@
 
             @foreach ($hibak as $hiba)
 
-                @if ($hiba->meresek->hibakod > 0)
+                @if ($hiba->hibakod > 0)
 
                 <tr>
-                    <td>{{$hiba->meresek->m_id}}</td>
-                    <td>{{$hiba->terem_szam}}</td>
-                    <td>{{$hiba->terem_szint}}</td>
-                    <td>{{$hiba->eszköz_ip}}</td>
-                    <td>{{$hiba->meresek->meres_ideje}}</td>
+                    <td>{{$hiba->m_id}}</td>
+                    <td>{{$hiba->helyszinek->terem_szam}}</td>
+                    <td>{{$hiba->helyszinek->terem_szint}}</td>
+                    <td>{{$hiba->helyszinek->eszköz_ip}}</td>
+                    <td>{{$hiba->meres_ideje}}</td>
 
                         @if ($hiba->hibakod == 1)
                             <td class="bg-info">Sikertelen páratartalom és hőmérskéklet beolvasás, ellenőrizd a kábeleket!</td>
